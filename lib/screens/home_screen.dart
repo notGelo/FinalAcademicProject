@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,9 +13,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        drawer: new Drawer(
-          child: ListView(),
+        appBar: new AppBar(
+          backgroundColor: Colors.yellow[700],
         ),
+        drawer: NavBar(),
         body: ListView(
           scrollDirection: Axis.vertical,
           children: <Widget>[
