@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavBar extends StatefulWidget {
   @override
@@ -25,24 +26,29 @@ class _NavBarState extends State<NavBar> {
                 )),
           ),
           ListTile(
-            leading: Icon(Icons.access_alarm),
+            leading: Icon(FontAwesomeIcons.pizzaSlice),
             title: Text('Daily'),
-            onTap: () => null,
+            onTap: () => Navigator.pushNamed(context, '/home'),
           ),
           ListTile(
-            leading: Icon(Icons.set_meal),
+            leading: Icon(FontAwesomeIcons.iceCream),
             title: Text('Cuisines'),
-            onTap: () => null,
+            onTap: () => Navigator.pushNamed(context, '/cuisine'),
           ),
           ListTile(
-            leading: Icon(Icons.food_bank),
+            leading: Icon(FontAwesomeIcons.apple),
+            title: Text('Category'),
+            onTap: () => Navigator.pushNamed(context, '/category'),
+          ),
+          ListTile(
+            leading: Icon(FontAwesomeIcons.pepperHot),
             title: Text('Ingredients'),
-            onTap: () => null,
+            onTap: () => Navigator.pushNamed(context, '/ingredients'),
           ),
           ListTile(
-            leading: Icon(Icons.format_list_bulleted),
+            leading: Icon(FontAwesomeIcons.hamburger),
             title: Text('What to Buy/Grocery List'),
-            onTap: () => null,
+            onTap: () => Navigator.pushNamed(context, '/list'),
           ),
         ],
       ),
