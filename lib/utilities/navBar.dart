@@ -13,8 +13,8 @@ class _NavBarState extends State<NavBar> {
       child: ListView(
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text('Recipes for many'),
-            accountEmail: Text(''),
+            accountName: Text('GRUBHIE'),
+            accountEmail: Text('Recipes for many'),
             currentAccountPicture: Image(
               image: AssetImage(''), //add Ghubhie logo
             ),
@@ -27,39 +27,46 @@ class _NavBarState extends State<NavBar> {
             ),
           ),
           ListTile(
-              leading: Icon(FontAwesomeIcons.pizzaSlice),
+              leading: Icon(FontAwesomeIcons.candyCane),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/home');
+              }),
+          ListTile(
+              leading: Icon(FontAwesomeIcons.apple),
               title: Text('Daily'),
               onTap: () {
-                Navigator.pushNamed(context, '/daily');
                 Navigator.pop(context);
+                Navigator.pushNamed(context, '/daily');
               }),
           ListTile(
               leading: Icon(FontAwesomeIcons.iceCream),
               title: Text('Cuisines'),
               onTap: () {
-                Navigator.pushNamed(context, '/cuisine');
                 Navigator.pop(context);
+                Navigator.pushNamed(context, '/cuisine');
               }),
           ListTile(
-              leading: Icon(FontAwesomeIcons.apple),
+              leading: Icon(FontAwesomeIcons.pizzaSlice),
               title: Text('Category'),
               onTap: () {
-                Navigator.pushNamed(context, '/category');
                 Navigator.pop(context);
+                Navigator.pushNamed(context, '/category');
               }),
           ListTile(
               leading: Icon(FontAwesomeIcons.pepperHot),
               title: Text('Ingredients'),
               onTap: () {
-                Navigator.pushNamed(context, '/ingredients');
                 Navigator.pop(context);
+                Navigator.pushNamed(context, '/ingredients');
               }),
           ListTile(
               leading: Icon(FontAwesomeIcons.hamburger),
               title: Text('What to Buy/Grocery List'),
               onTap: () {
-                Navigator.pushNamed(context, '/list');
                 Navigator.pop(context);
+                Navigator.pushNamed(context, '/list');
               }),
         ],
       ),

@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: new AppBar(
-          backgroundColor: Colors.yellow[700],
+          backgroundColor: Colors.transparent,
         ),
         drawer: NavBar(),
         body: Column(
