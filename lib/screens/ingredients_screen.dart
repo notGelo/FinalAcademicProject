@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grubhie/utilities/navBar.dart';
 
 class IngredientsPage extends StatefulWidget {
-  const IngredientsPage({Key? key}) : super(key: key);
-
   @override
   _IngredientsPageState createState() => _IngredientsPageState();
 }
@@ -10,6 +9,14 @@ class IngredientsPage extends StatefulWidget {
 class _IngredientsPageState extends State<IngredientsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text('ingredients page'));
+    return SafeArea(
+      child: Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Colors.yellow[700],
+        ),
+        drawer: NavBar(),
+        body: Text('ingredients page'),
+      ),
+    );
   }
 }

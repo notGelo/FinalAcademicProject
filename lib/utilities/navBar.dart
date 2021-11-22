@@ -19,16 +19,17 @@ class _NavBarState extends State<NavBar> {
               image: AssetImage(''), //add Ghubhie logo
             ),
             decoration: BoxDecoration(
-                color: Colors.blue, //change color to our color themes
-                image: DecorationImage(
-                  image: AssetImage(''), //add background image on burger menu
-                  fit: BoxFit.cover,
-                )),
+              color: Colors.blue, //change color to our color themes
+              image: DecorationImage(
+                image: AssetImage(''), //add background image on burger menu
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.pizzaSlice),
             title: Text('Daily'),
-            onTap: () => Navigator.pushNamed(context, '/home'),
+            onTap: () => Navigator.pushNamed(context, '/daily'),
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.iceCream),

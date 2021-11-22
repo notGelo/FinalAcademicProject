@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grubhie/utilities/navBar.dart';
 
 class RecipePage extends StatefulWidget {
-  const RecipePage({Key? key}) : super(key: key);
-
   @override
   _RecipePageState createState() => _RecipePageState();
 }
@@ -10,6 +9,14 @@ class RecipePage extends StatefulWidget {
 class _RecipePageState extends State<RecipePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text('recipe page'));
+    return SafeArea(
+      child: Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Colors.yellow[700],
+        ),
+        drawer: NavBar(),
+        body: Text('recipe page'),
+      ),
+    );
   }
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grubhie/utilities/navBar.dart';
 
 class CategoryPage extends StatefulWidget {
-  const CategoryPage({Key? key}) : super(key: key);
-
   @override
   _CategoryPageState createState() => _CategoryPageState();
 }
@@ -10,6 +9,14 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text('category page'));
+    return SafeArea(
+      child: Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Colors.yellow[700],
+        ),
+        drawer: NavBar(),
+        body: Text('category page'),
+      ),
+    );
   }
 }
