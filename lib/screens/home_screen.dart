@@ -20,13 +20,23 @@ class _HomeScreenState extends State<HomeScreen> {
         body: ListView(
           scrollDirection: Axis.vertical,
           children: <Widget>[
+            SizedBox(
+              height: 100,
+            ),
             Text(
               'Grubhie',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 50.0,
               ),
             ),
+            SizedBox(
+              height: 15,
+            ),
             Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 15.0,
+              ),
               child: TextField(
                 style: TextStyle(
                   color: Colors.black,
@@ -34,55 +44,37 @@ class _HomeScreenState extends State<HomeScreen> {
                 decoration: kTextFieldInputDecoration,
               ),
             ),
+            SizedBox(
+              height: 70,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      height: 200,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                    Expanded(
+                      child: Container(
+                        height: 200,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Text("He'd have you all unravel at the"),
+                          color: Colors.teal[100],
                         ),
-                        child: const Text("He'd have you all unravel at the"),
-                        color: Colors.teal[100],
                       ),
                     ),
-                    Container(
-                      height: 200,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                    Expanded(
+                      child: Container(
+                        height: 200,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Text("He'd have you all unravel at the"),
+                          color: Colors.teal[100],
                         ),
-                        child: const Text("He'd have you all unravel at the"),
-                        color: Colors.teal[100],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      height: 200,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: const Text("He'd have you all unravel at the"),
-                        color: Colors.teal[100],
-                      ),
-                    ),
-                    Container(
-                      height: 200,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: const Text("He'd have you all unravel at the"),
-                        color: Colors.teal[100],
                       ),
                     ),
                   ],
@@ -90,24 +82,57 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Container(
-                      height: 200,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                    Expanded(
+                      child: Container(
+                        height: 200,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Text("He'd have you all unravel at the"),
+                          color: Colors.teal[100],
                         ),
-                        child: const Text("He'd have you all unravel at the"),
-                        color: Colors.teal[100],
                       ),
                     ),
-                    Container(
-                      height: 200,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                    Expanded(
+                      child: Container(
+                        height: 200,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Text("He'd have you all unravel at the"),
+                          color: Colors.teal[100],
                         ),
-                        child: const Text("He'd have you all unravel at the"),
-                        color: Colors.teal[100],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 200,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Text("He'd have you all unravel at the"),
+                          color: Colors.teal[100],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 200,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: const Text("He'd have you all unravel at the"),
+                          color: Colors.teal[100],
+                        ),
                       ),
                     ),
                   ],
