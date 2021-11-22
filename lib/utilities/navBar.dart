@@ -27,30 +27,40 @@ class _NavBarState extends State<NavBar> {
             ),
           ),
           ListTile(
-            leading: Icon(FontAwesomeIcons.pizzaSlice),
-            title: Text('Daily'),
-            onTap: () => Navigator.pushNamed(context, '/daily'),
-          ),
+              leading: Icon(FontAwesomeIcons.pizzaSlice),
+              title: Text('Daily'),
+              onTap: () {
+                Navigator.pushNamed(context, '/daily');
+                Navigator.pop(context);
+              }),
           ListTile(
-            leading: Icon(FontAwesomeIcons.iceCream),
-            title: Text('Cuisines'),
-            onTap: () => Navigator.pushNamed(context, '/cuisine'),
-          ),
+              leading: Icon(FontAwesomeIcons.iceCream),
+              title: Text('Cuisines'),
+              onTap: () {
+                Navigator.pushNamed(context, '/cuisine');
+                Navigator.pop(context);
+              }),
           ListTile(
-            leading: Icon(FontAwesomeIcons.apple),
-            title: Text('Category'),
-            onTap: () => Navigator.pushNamed(context, '/category'),
-          ),
+              leading: Icon(FontAwesomeIcons.apple),
+              title: Text('Category'),
+              onTap: () {
+                Navigator.pushNamed(context, '/category');
+                Navigator.pop(context);
+              }),
           ListTile(
-            leading: Icon(FontAwesomeIcons.pepperHot),
-            title: Text('Ingredients'),
-            onTap: () => Navigator.pushNamed(context, '/ingredients'),
-          ),
+              leading: Icon(FontAwesomeIcons.pepperHot),
+              title: Text('Ingredients'),
+              onTap: () {
+                Navigator.pushNamed(context, '/ingredients');
+                Navigator.pop(context);
+              }),
           ListTile(
-            leading: Icon(FontAwesomeIcons.hamburger),
-            title: Text('What to Buy/Grocery List'),
-            onTap: () => Navigator.pushNamed(context, '/list'),
-          ),
+              leading: Icon(FontAwesomeIcons.hamburger),
+              title: Text('What to Buy/Grocery List'),
+              onTap: () {
+                Navigator.pushNamed(context, '/list');
+                Navigator.pop(context);
+              }),
         ],
       ),
     );
