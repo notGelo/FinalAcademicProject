@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 
+//GET SCREEN HEIGHT AND WIDTH WITHOUT SAFE AREA
+double getScreenWidth(BuildContext context) {
+  return MediaQuery.of(context).size.width;
+}
+
+double getScreenHeight(BuildContext context) {
+  return MediaQuery.of(context).size.height;
+}
+
+//DECORATIONS
 const kTextFieldInputDecoration = InputDecoration(
   filled: true,
   fillColor: Colors.white,
@@ -15,11 +25,18 @@ const kTextFieldInputDecoration = InputDecoration(
   ),
 );
 
+//CUSTOM WIDGETS
 Expanded kcustomWidget(
-    {String inputText = '', Color col = Colors.teal, double height = 0}) {
+    {String inputText = '',
+    Color col = Colors.teal,
+    double width = 0,
+    double height = 0,
+    double inputMargin = 0.0}) {
   return Expanded(
     child: Container(
+      margin: EdgeInsets.all(inputMargin),
       height: height,
+      width: width,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),

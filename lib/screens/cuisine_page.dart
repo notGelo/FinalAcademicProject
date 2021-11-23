@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
+import 'dart:math';
 
 class CuisinePage extends StatefulWidget {
   @override
@@ -8,6 +10,9 @@ class CuisinePage extends StatefulWidget {
 }
 
 class _CuisinePageState extends State<CuisinePage> {
+  double cuisineMargin = 10;
+  double cuisineHeight = 0.3;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,6 +22,7 @@ class _CuisinePageState extends State<CuisinePage> {
         ),
         drawer: NavBar(),
         body: ListView(
+          padding: EdgeInsets.all(10.0),
           scrollDirection: Axis.vertical,
           children: <Widget>[
             Container(
@@ -30,29 +36,60 @@ class _CuisinePageState extends State<CuisinePage> {
                 ),
               ),
             ),
-            kcustomWidget(
-              inputText: 'JAPANESE',
+            cuisineWidget(
+              inputText: 'JAVANESE',
               col: Colors.red,
-              height: 100,
+              height: min(getScreenHeight(context) * cuisineHeight,
+                  getScreenWidth(context) * cuisineHeight),
+              inputMargin: cuisineMargin,
             ),
-            kcustomWidget(
+            cuisineWidget(
               inputText: 'ITALIAN',
               col: Colors.red,
-              height: 100,
+              height: min(getScreenHeight(context) * cuisineHeight,
+                  getScreenWidth(context) * cuisineHeight),
+              inputMargin: cuisineMargin,
             ),
-            kcustomWidget(
+            cuisineWidget(
               inputText: 'CHINESE',
               col: Colors.red,
-              height: 100,
+              height: min(getScreenHeight(context) * cuisineHeight,
+                  getScreenWidth(context) * cuisineHeight),
+              inputMargin: cuisineMargin,
             ),
-            kcustomWidget(
+            cuisineWidget(
               inputText: 'ENGLISH',
               col: Colors.red,
-              height: 100,
+              height: min(getScreenHeight(context) * cuisineHeight,
+                  getScreenWidth(context) * cuisineHeight),
+              inputMargin: cuisineMargin,
             ),
           ],
         ),
       ),
     );
   }
+}
+
+//REUSABLE WIDGETS
+Expanded cuisineWidget(
+    {String inputText = '',
+    Color col = Colors.teal,
+    double width = 0,
+    double height = 0,
+    double inputMargin = 0.0}) {
+  return Expanded(
+    child: Container(
+      margin: EdgeInsets.all(inputMargin),
+      height: height,
+      width: width,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Text(inputText),
+        color: col,
+      ),
+    ),
+  );
 }
