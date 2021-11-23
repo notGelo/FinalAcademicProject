@@ -39,87 +39,39 @@ class _DailyPageState extends State<DailyPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: const Text("He'd have you all unravel at the"),
-                          color: Colors.teal[100],
-                        ),
-                      ),
+                    customWidget(
+                      inputText: 'HELLO',
+                      col: Colors.red,
                     ),
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: const Text("He'd have you all unravel at the"),
-                          color: Colors.teal[100],
-                        ),
-                      ),
+                    customWidget(
+                      inputText: 'HI',
+                      col: Colors.grey,
                     ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: const Text("He'd have you all unravel at the"),
-                          color: Colors.teal[100],
-                        ),
-                      ),
+                    customWidget(
+                      inputText: 'OMG??',
+                      col: Colors.red,
                     ),
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: const Text("He'd have you all unravel at the"),
-                          color: Colors.teal[100],
-                        ),
-                      ),
+                    customWidget(
+                      inputText: 'CUSTOM',
+                      col: Colors.red,
                     ),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: const Text("He'd have you all unravel at the"),
-                          color: Colors.teal[100],
-                        ),
-                      ),
+                    customWidget(
+                      inputText: 'WIDGET',
+                      col: Colors.red,
                     ),
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: const Text("He'd have you all unravel at the"),
-                          color: Colors.teal[100],
-                        ),
-                      ),
+                    customWidget(
+                      inputText: 'IS ROCKZZ',
+                      col: Colors.red,
                     ),
                   ],
                 ),
@@ -130,4 +82,19 @@ class _DailyPageState extends State<DailyPage> {
       ),
     );
   }
+}
+
+Expanded customWidget({String inputText = '', Color col = Colors.teal}) {
+  return Expanded(
+    child: Container(
+      height: 200,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Text(inputText),
+        color: col,
+      ),
+    ),
+  );
 }

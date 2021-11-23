@@ -13,34 +13,36 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: new AppBar(
-          backgroundColor: Colors.transparent,
-        ),
+        appBar: new AppBar(backgroundColor: Color.fromRGBO(215, 215, 215, 1)),
         drawer: NavBar(),
         body: Column(
+          //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
-              height: 100,
-            ),
-            Text(
-              'Grubhie',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 50.0,
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 15.0,
-              ),
-              child: TextField(
-                style: TextStyle(
-                  color: Colors.black,
+            Expanded(
+              flex: 4,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  'Grubhie',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 50.0,
+                  ),
                 ),
-                decoration: kTextFieldInputDecoration,
+              ),
+            ),
+            Expanded(
+              flex: 6,
+              child: Container(
+                margin: EdgeInsets.fromLTRB(13, 15, 13, 0),
+                child: TextField(
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                  decoration: InputDecoration(
+                      fillColor: Color.fromRGBO(230, 230, 230, 1),
+                      filled: true),
+                ),
               ),
             ),
           ],
@@ -49,3 +51,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+//REUSABLE WIDGETS

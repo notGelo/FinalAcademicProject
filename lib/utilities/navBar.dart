@@ -42,7 +42,7 @@ class _NavBarState extends State<NavBar> {
               }),
           ListTile(
               leading: Icon(FontAwesomeIcons.iceCream),
-              title: Text('Cuisines'),
+              title: Text('Cuisinism'),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.pushNamed(context, '/cuisine');
