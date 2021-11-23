@@ -15,4 +15,19 @@ const kTextFieldInputDecoration = InputDecoration(
   ),
 );
 
+Expanded kcustomWidget(
+    {String inputText = '', Color col = Colors.teal, double height = 0}) {
+  return Expanded(
+    child: Container(
+      height: height,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Text(inputText),
+        color: col,
+      ),
+    ),
+  );
+}
 //THEME 1

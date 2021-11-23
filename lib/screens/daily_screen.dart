@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
+import 'package:grubhie/utilities/constants.dart';
 
 class DailyPage extends StatefulWidget {
   const DailyPage({Key? key}) : super(key: key);
@@ -34,29 +35,35 @@ class _DailyPageState extends State<DailyPage> {
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               children: [
-                customWidget(
+                kcustomWidget(
                   inputText: 'HENLO',
                   col: Colors.red,
+                  height: 200,
                 ),
-                customWidget(
+                kcustomWidget(
                   inputText: 'HI',
                   col: Colors.grey,
+                  height: 200,
                 ),
-                customWidget(
+                kcustomWidget(
                   inputText: 'OMG??',
                   col: Colors.red,
+                  height: 200,
                 ),
-                customWidget(
+                kcustomWidget(
                   inputText: 'CUSTOM',
                   col: Colors.red,
+                  height: 200,
                 ),
-                customWidget(
+                kcustomWidget(
                   inputText: 'WIDGET',
                   col: Colors.red,
+                  height: 200,
                 ),
-                customWidget(
+                kcustomWidget(
                   inputText: 'IS ROCKZZ',
                   col: Colors.red,
+                  height: 200,
                 ),
               ],
             ),
@@ -69,17 +76,18 @@ class _DailyPageState extends State<DailyPage> {
 
 //REUSABLE WIDGETS
 
-Expanded customWidget({String inputText = '', Color col = Colors.teal}) {
-  return Expanded(
-    child: Container(
-      height: 200,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Text(inputText),
-        color: col,
-      ),
-    ),
-  );
-}
+// Expanded customWidget(
+//     {String inputText = '', Color col = Colors.teal, double height = 0}) {
+//   return Expanded(
+//     child: Container(
+//       height: height,
+//       child: Card(
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(20.0),
+//         ),
+//         child: Text(inputText),
+//         color: col,
+//       ),
+//     ),
+//   );
+// }

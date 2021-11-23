@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
+import 'package:grubhie/utilities/constants.dart';
 
 class CuisinePage extends StatefulWidget {
-  const CuisinePage({Key? key}) : super(key: key);
-
   @override
   _CuisinePageState createState() => _CuisinePageState();
 }
@@ -20,22 +19,37 @@ class _CuisinePageState extends State<CuisinePage> {
         body: ListView(
           scrollDirection: Axis.vertical,
           children: <Widget>[
-            Text(
-              'CUISINES',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.blue[500],
-                fontSize: 50.0,
-              ),
-            ),
             Container(
-              child: Card(
-                child: Text(
-                  'Japanese',
-                  textAlign: TextAlign.center,
+              margin: EdgeInsets.all(50.0),
+              child: Text(
+                'CUISINES',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.blue[500],
+                  fontSize: 50.0,
                 ),
               ),
-            )
+            ),
+            kcustomWidget(
+              inputText: 'JAPANESE',
+              col: Colors.red,
+              height: 100,
+            ),
+            kcustomWidget(
+              inputText: 'ITALIAN',
+              col: Colors.red,
+              height: 100,
+            ),
+            kcustomWidget(
+              inputText: 'CHINESE',
+              col: Colors.red,
+              height: 100,
+            ),
+            kcustomWidget(
+              inputText: 'ENGLISH',
+              col: Colors.red,
+              height: 100,
+            ),
           ],
         ),
       ),
