@@ -18,62 +18,45 @@ class _DailyPageState extends State<DailyPage> {
         ),
         drawer: NavBar(),
         body: ListView(
-          scrollDirection: Axis.vertical,
           children: <Widget>[
-            SizedBox(
-              height: 100,
-            ),
-            Text(
-              'Daily',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 50.0,
+            Container(
+              margin: EdgeInsets.all(50.0),
+              child: Text(
+                'Daily',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 50.0,
+                ),
               ),
             ),
-            SizedBox(
-              height: 15,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            GridView.count(
+              crossAxisCount: 2,
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    customWidget(
-                      inputText: 'HELLO',
-                      col: Colors.red,
-                    ),
-                    customWidget(
-                      inputText: 'HI',
-                      col: Colors.grey,
-                    ),
-                  ],
+                customWidget(
+                  inputText: 'HENLO',
+                  col: Colors.red,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    customWidget(
-                      inputText: 'OMG??',
-                      col: Colors.red,
-                    ),
-                    customWidget(
-                      inputText: 'CUSTOM',
-                      col: Colors.red,
-                    ),
-                  ],
+                customWidget(
+                  inputText: 'HI',
+                  col: Colors.grey,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    customWidget(
-                      inputText: 'WIDGET',
-                      col: Colors.red,
-                    ),
-                    customWidget(
-                      inputText: 'IS ROCKZZ',
-                      col: Colors.red,
-                    ),
-                  ],
+                customWidget(
+                  inputText: 'OMG??',
+                  col: Colors.red,
+                ),
+                customWidget(
+                  inputText: 'CUSTOM',
+                  col: Colors.red,
+                ),
+                customWidget(
+                  inputText: 'WIDGET',
+                  col: Colors.red,
+                ),
+                customWidget(
+                  inputText: 'IS ROCKZZ',
+                  col: Colors.red,
                 ),
               ],
             ),
@@ -83,6 +66,8 @@ class _DailyPageState extends State<DailyPage> {
     );
   }
 }
+
+//REUSABLE WIDGETS
 
 Expanded customWidget({String inputText = '', Color col = Colors.teal}) {
   return Expanded(
