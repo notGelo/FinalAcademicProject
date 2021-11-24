@@ -62,7 +62,7 @@ class _NavBarState extends State<NavBar> {
                 Navigator.pushNamed(context, '/ingredients');
               }),
           ListTile(
-              leading: Icon(FontAwesomeIcons.hamburger),
+              leading: Icon(FontAwesomeIcons.hotdog),
               title: Text('What to Buy/Grocery List'),
               onTap: () {
                 Navigator.pop(context);

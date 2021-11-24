@@ -14,45 +14,34 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: new AppBar(backgroundColor: Color.fromRGBO(215, 215, 215, 1)),
         drawer: NavBar(),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/bg_home.png'),
-              fit: BoxFit.fill,
+              image: AssetImage('assets/images/bg_home_final.png'),
+              fit: BoxFit.cover,
             ),
           ),
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                flex: 4,
+                flex: 9,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: Text(
-                    'Grubhie',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 50.0,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/daily');
+                    },
+                    child: Image(
+                      image: AssetImage('assets/images/OMGKA.gif'),
                     ),
                   ),
                 ),
               ),
               Expanded(
                 flex: 6,
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(13, 15, 13, 0),
-                  child: TextField(
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                    decoration: kTextFieldInputDecoration.copyWith(
-                      hintText: 'Search ingredients, cuisines, categories...',
-                      prefixIcon: Icon(FontAwesomeIcons.cheese),
-                    ),
-                  ),
-                ),
+                child: Container(),
               ),
             ],
           ),

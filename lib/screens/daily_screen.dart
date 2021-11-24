@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DailyPage extends StatefulWidget {
   const DailyPage({Key? key}) : super(key: key);
@@ -15,7 +16,11 @@ class _DailyPageState extends State<DailyPage> {
     return SafeArea(
       child: Scaffold(
         appBar: new AppBar(
-          backgroundColor: Colors.yellow[700],
+          backgroundColor: Colors.transparent,
+          leading: Icon(
+            FontAwesomeIcons.hamburger,
+            color: Colors.pink,
+          ),
         ),
         drawer: NavBar(),
         body: ListView(
