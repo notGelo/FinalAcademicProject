@@ -75,3 +75,24 @@ class _DailyPageState extends State<DailyPage> {
 }
 
 //REUSABLE WIDGETS
+Expanded kcustomWidget(
+    {String inputText = '',
+    Color col = Colors.teal,
+    double width = 0,
+    double height = 0,
+    double inputMargin = 0.0}) {
+  return Expanded(
+    child: Container(
+      margin: EdgeInsets.all(inputMargin),
+      height: height,
+      width: width,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Text(inputText),
+        color: col,
+      ),
+    ),
+  );
+}

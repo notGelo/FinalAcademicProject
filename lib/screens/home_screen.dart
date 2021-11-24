@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/bg_home.png'),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
           child: Column(
@@ -46,9 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       color: Colors.black,
                     ),
-                    decoration: InputDecoration(
-                        fillColor: Color.fromRGBO(230, 230, 230, 1),
-                        filled: true),
+                    decoration: kTextFieldInputDecoration.copyWith(
+                      hintText: 'Search ingredients, cuisines, categories...',
+                      prefixIcon: Icon(FontAwesomeIcons.cheese),
+                    ),
                   ),
                 ),
               ),
