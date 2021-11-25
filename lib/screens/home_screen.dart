@@ -28,21 +28,21 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 flex: 9,
                 child: Align(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/daily');
                     },
                     child: Image(
-                      image: AssetImage('assets/images/OMGKA.gif'),
+                      image: AssetImage('assets/images/grubhie_logo.gif'),
                     ),
                   ),
                 ),
               ),
-              Expanded(
-                flex: 6,
-                child: Container(),
-              ),
+              // Expanded(
+              //   flex: 6,
+              //   child: Container(),
+              // ),
             ],
           ),
         ),

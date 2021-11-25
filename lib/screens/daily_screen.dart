@@ -25,56 +25,58 @@ class _DailyPageState extends State<DailyPage> {
           ),
         ),
         drawer: NavBar(),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(50.0),
-              child: Text(
-                'Daily',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 50.0,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/bg_plain.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: ListView(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(widthOfScreen(context, 0.2)),
+                child: Text(
+                  'Daily Meal, Bitch',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: widthOfScreen(context, 0.1),
+                  ),
                 ),
               ),
-            ),
-            GridView.count(
-              crossAxisCount: 2,
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              children: [
-                kcustomWidget(
-                  inputText: 'HENLO',
-                  col: Colors.red,
-                  height: 200,
-                ),
-                kcustomWidget(
-                  inputText: 'HI',
-                  col: Colors.grey,
-                  height: 200,
-                ),
-                kcustomWidget(
-                  inputText: 'OMG??',
-                  col: Colors.red,
-                  height: 200,
-                ),
-                kcustomWidget(
-                  inputText: 'CUSTOM',
-                  col: Colors.red,
-                  height: 200,
-                ),
-                kcustomWidget(
-                  inputText: 'WIDGET',
-                  col: Colors.red,
-                  height: 200,
-                ),
-                kcustomWidget(
-                  inputText: 'IS ROCKZZ',
-                  col: Colors.red,
-                  height: 200,
-                ),
-              ],
-            ),
-          ],
+              GridView.count(
+                crossAxisCount: 2,
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                children: [
+                  kcustomWidget(
+                      inputText: 'HENLO',
+                      col: randomColor(),
+                      inputMargin: widthOfScreen(context, 0.03)),
+                  kcustomWidget(
+                      inputText: 'HI',
+                      col: randomColor(),
+                      inputMargin: widthOfScreen(context, 0.03)),
+                  kcustomWidget(
+                      inputText: 'OMG??',
+                      col: randomColor(),
+                      inputMargin: widthOfScreen(context, 0.03)),
+                  kcustomWidget(
+                      inputText: 'CUSTOM',
+                      col: randomColor(),
+                      inputMargin: widthOfScreen(context, 0.03)),
+                  kcustomWidget(
+                      inputText: 'WIDGET',
+                      col: randomColor(),
+                      inputMargin: widthOfScreen(context, 0.03)),
+                  kcustomWidget(
+                      inputText: 'IS ROCKZZ',
+                      col: randomColor(),
+                      inputMargin: widthOfScreen(context, 0.03)),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -86,8 +88,8 @@ Expanded kcustomWidget(
     {String inputText = '',
     Color col = Colors.teal,
     double width = 0,
-    double height = 0,
-    double inputMargin = 0.0}) {
+    double height = 100,
+    double inputMargin = 10.00}) {
   return Expanded(
     child: Container(
       margin: EdgeInsets.all(inputMargin),
