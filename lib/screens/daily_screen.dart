@@ -4,8 +4,6 @@ import 'package:grubhie/utilities/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DailyPage extends StatefulWidget {
-  const DailyPage({Key? key}) : super(key: key);
-
   @override
   _DailyPageState createState() => _DailyPageState();
 }
@@ -15,11 +13,15 @@ class _DailyPageState extends State<DailyPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: kscaffoldKey,
         appBar: new AppBar(
           backgroundColor: Colors.transparent,
-          leading: Icon(
-            FontAwesomeIcons.hamburger,
+          leading: IconButton(
+            icon: Icon(FontAwesomeIcons.hamburger),
             color: Colors.pink,
+            onPressed: () {
+              kscaffoldKey.currentState?.openDrawer();
+            },
           ),
         ),
         drawer: NavBar(),

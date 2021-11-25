@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//SCAFFOLD KEY
+var kscaffoldKey = GlobalKey<ScaffoldState>();
+
 //GET SCREEN HEIGHT AND WIDTH WITHOUT SAFE AREA
 double getScreenWidth(BuildContext context) {
   return MediaQuery.of(context).size.width;
