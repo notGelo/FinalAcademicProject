@@ -8,6 +8,7 @@ import 'package:grubhie/screens/recipe_screen.dart';
 import 'package:grubhie/screens/recipeSteps_screen.dart';
 import 'package:grubhie/screens/filteredRecipe_screen.dart';
 import 'package:grubhie/screens/daily_screen.dart';
+import 'package:grubhie/screens/recipe_api.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/recipe': (context) => RecipePage(),
         '/recipeSteps': (context) => RecipeStepsPage(),
         '/filteredRecipe': (context) => FilteredRecipePage(),
+        '/recipes': (context) => Recipes(),
       },
     );
   }

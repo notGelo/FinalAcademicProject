@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/cuisine');
+                      Navigator.pushNamed(context, '/recipes');
                     },
                     child: Image(
                       image: AssetImage('assets/images/grubhie_logo.gif'),
