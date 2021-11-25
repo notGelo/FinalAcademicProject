@@ -50,11 +50,11 @@ class _DailyPageState extends State<DailyPage> {
                 shrinkWrap: true,
                 children: [
                   kcustomWidget(
-                      inputText: 'HENLO',
+                      inputText: 'HI',
                       col: randomColor(),
                       inputMargin: widthOfScreen(context, 0.03)),
                   kcustomWidget(
-                      inputText: 'HI',
+                      inputText: 'HENLO',
                       col: randomColor(),
                       inputMargin: widthOfScreen(context, 0.03)),
                   kcustomWidget(
@@ -63,14 +63,6 @@ class _DailyPageState extends State<DailyPage> {
                       inputMargin: widthOfScreen(context, 0.03)),
                   kcustomWidget(
                       inputText: 'CUSTOM',
-                      col: randomColor(),
-                      inputMargin: widthOfScreen(context, 0.03)),
-                  kcustomWidget(
-                      inputText: 'WIDGET',
-                      col: randomColor(),
-                      inputMargin: widthOfScreen(context, 0.03)),
-                  kcustomWidget(
-                      inputText: 'IS ROCKZZ',
                       col: randomColor(),
                       inputMargin: widthOfScreen(context, 0.03)),
                 ],

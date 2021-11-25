@@ -13,19 +13,21 @@ class _IngredientsPageState extends State<IngredientsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        key: kscaffoldKey,
-        appBar: new AppBar(
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            icon: Icon(FontAwesomeIcons.hamburger),
-            color: Colors.pink,
-            onPressed: () {
-              kscaffoldKey.currentState?.openDrawer();
-            },
-          ),
-        ),
+        // key: kscaffoldKey,
+        // appBar: new AppBar(
+        //   backgroundColor: Colors.transparent,
+        //   leading: IconButton(
+        //     icon: Icon(FontAwesomeIcons.hamburger),
+        //     color: Colors.pink,
+        //     onPressed: () {
+        //       kscaffoldKey.currentState?.openDrawer();
+        //     },
+        //   ),
+        // ),
         drawer: NavBar(),
-        body: Text('ingredients page'),
+        body: Column(
+          children: [TextField()],
+        ),
       ),
     );
   }
