@@ -227,7 +227,7 @@ class _SearchPageState extends State<SearchPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SearchPage()));
+                              builder: (context) => SearchPage(search: text)));
                     },
                     icon: Icon(Icons.search),
                   ),

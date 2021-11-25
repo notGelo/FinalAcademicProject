@@ -4,6 +4,7 @@ import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
+import 'package:grubhie/customWidgets/change_theme_button_widget.dart';
 
 class CuisinePage extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _CuisinePageState extends State<CuisinePage> {
     return SafeArea(
       child: Scaffold(
         key: kscaffoldKey,
-        appBar: new AppBar(
+        appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: IconButton(
             icon: Icon(FontAwesomeIcons.hamburger),
@@ -28,6 +29,9 @@ class _CuisinePageState extends State<CuisinePage> {
               kscaffoldKey.currentState?.openDrawer();
             },
           ),
+          actions: [
+            ChangeThemeButtonWidget(),
+          ],
         ),
         drawer: NavBar(),
         body: ListView(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:grubhie/customWidgets/change_theme_button_widget.dart';
 
 class DailyPage extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _DailyPageState extends State<DailyPage> {
     return SafeArea(
       child: Scaffold(
         key: kscaffoldKey,
-        appBar: new AppBar(
+        appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: IconButton(
             icon: Icon(FontAwesomeIcons.hamburger),
@@ -23,6 +24,9 @@ class _DailyPageState extends State<DailyPage> {
               kscaffoldKey.currentState?.openDrawer();
             },
           ),
+          actions: [
+            ChangeThemeButtonWidget(),
+          ],
         ),
         drawer: NavBar(),
         body: Container(
