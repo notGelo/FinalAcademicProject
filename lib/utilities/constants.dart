@@ -28,7 +28,6 @@ Color randomColor() {
 }
 
 //hexColorShemene
-
 extension ColorExtension on String {
   toColor() {
     var hexColor = this.replaceAll("#", "");

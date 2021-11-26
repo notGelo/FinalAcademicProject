@@ -53,44 +53,56 @@ class _DailyPageState extends State<DailyPage> {
                       Navigator.pushNamed(context, '/recipes');
                     },
                     child: kcustomWidget(
-                        inputText: 'RECIPE',
+                        inputText: 'Recipes',
                         col: 'ea9052'.toColor(),
                         inputMarginSides: widthOfScreen(context, marginSides),
                         inputMarginTop: widthOfScreen(context, marginTop),
-                        height: widthOfScreen(context, 0.3)),
+                        height: widthOfScreen(context, 0.3),
+                        picSide: 'right',
+                        iconImage: 'assets/images/food_1.png',
+                        radius: 30.0),
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, '/recipes');
                     },
                     child: kcustomWidget(
-                        inputText: 'FUNCTION 2',
-                        col: '77b255'.toColor(),
-                        inputMarginSides: widthOfScreen(context, marginSides),
-                        inputMarginTop: widthOfScreen(context, marginTop),
-                        height: widthOfScreen(context, 0.3)),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/recipes');
-                    },
-                    child: kcustomWidget(
-                        inputText: 'FUNCTION 3',
+                        inputText: 'Second',
                         col: 'e84060'.toColor(),
                         inputMarginSides: widthOfScreen(context, marginSides),
                         inputMarginTop: widthOfScreen(context, marginTop),
-                        height: widthOfScreen(context, 0.3)),
+                        height: widthOfScreen(context, 0.3),
+                        picSide: 'left',
+                        iconImage: 'assets/images/food_2.png',
+                        radius: 30.0),
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, '/recipes');
                     },
                     child: kcustomWidget(
-                        inputText: 'FUNCTION 4',
+                        inputText: 'Third',
+                        col: '77b255'.toColor(),
+                        inputMarginSides: widthOfScreen(context, marginSides),
+                        inputMarginTop: widthOfScreen(context, marginTop),
+                        height: widthOfScreen(context, 0.3),
+                        picSide: 'right',
+                        iconImage: 'assets/images/food_3.png',
+                        radius: 30.0),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/recipes');
+                    },
+                    child: kcustomWidget(
+                        inputText: 'Third po',
                         col: '6840e8'.toColor(),
                         inputMarginSides: widthOfScreen(context, marginSides),
                         inputMarginTop: widthOfScreen(context, marginTop),
-                        height: widthOfScreen(context, 0.3)),
+                        height: widthOfScreen(context, 0.3),
+                        picSide: 'left',
+                        iconImage: 'assets/images/food_4.png',
+                        radius: 30.0),
                   ),
                 ],
               ),
@@ -110,20 +122,97 @@ Expanded kcustomWidget(
     double height = 100,
     double inputMarginTop = 0,
     double inputMarginSides = 0,
-    Alignment alignText = Alignment.center}) {
-  return Expanded(
-    child: Container(
-      margin: EdgeInsets.symmetric(
-          horizontal: inputMarginSides, vertical: inputMarginTop),
-      height: height,
-      width: width,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
+    Alignment alignText = Alignment.center,
+    String picSide = '',
+    String iconImage = '',
+    double radius = 0}) {
+  if (picSide == 'right') {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.symmetric(
+            horizontal: inputMarginSides, vertical: inputMarginTop),
+        height: height,
+        width: width,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(radius * 1.5),
+              topRight: Radius.circular(radius / 2),
+              bottomLeft: Radius.circular(radius * 1.5),
+              bottomRight: Radius.circular(radius / 2),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: radius),
+                child: Text(
+                  inputText,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: height / 4,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        offset: Offset(1, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Image(
+                image: AssetImage(iconImage),
+              ),
+            ],
+          ),
+          color: col,
         ),
-        child: Text(inputText),
-        color: col,
       ),
-    ),
-  );
+    );
+  } else {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.symmetric(
+            horizontal: inputMarginSides, vertical: inputMarginTop),
+        height: height,
+        width: width,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(radius / 2),
+              topRight: Radius.circular(radius * 1.5),
+              bottomLeft: Radius.circular(radius / 2),
+              bottomRight: Radius.circular(radius * 1.5),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image(
+                image: AssetImage(iconImage),
+              ),
+              Container(
+                margin: EdgeInsets.only(right: radius),
+                child: Text(
+                  inputText,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: height / 4,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        offset: Offset(1, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          color: col,
+        ),
+      ),
+    );
+  }
 }
