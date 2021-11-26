@@ -27,6 +27,20 @@ Color randomColor() {
   return Color((random.nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
 }
 
+//hexColorShemene
+
+extension ColorExtension on String {
+  toColor() {
+    var hexColor = this.replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    if (hexColor.length == 8) {
+      return Color(int.parse("0x$hexColor"));
+    }
+  }
+}
+
 //DECORATIONS
 const kTextFieldInputDecoration = InputDecoration(
   filled: true,

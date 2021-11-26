@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
+import 'dart:math';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:grubhie/customWidgets/change_theme_button_widget.dart';
 
 class DailyPage extends StatefulWidget {
   @override
@@ -11,23 +11,22 @@ class DailyPage extends StatefulWidget {
 
 class _DailyPageState extends State<DailyPage> {
   @override
+  double marginTop = 0.01;
+  double marginSides = 0.05;
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        key: kscaffoldKey,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            icon: Icon(FontAwesomeIcons.hamburger),
-            color: Colors.pink,
-            onPressed: () {
-              kscaffoldKey.currentState?.openDrawer();
-            },
-          ),
-          actions: [
-            ChangeThemeButtonWidget(),
-          ],
-        ),
+        // key: kscaffoldKey,
+        // appBar: new AppBar(
+        //   backgroundColor: Colors.transparent,
+        //   leading: IconButton(
+        //     icon: Icon(FontAwesomeIcons.hamburger),
+        //     color: Colors.pink,
+        //     onPressed: () {
+        //       kscaffoldKey.currentState?.openDrawer();
+        //     },
+        //   ),
+        // ),
         drawer: NavBar(),
         body: Container(
           decoration: BoxDecoration(
@@ -39,36 +38,60 @@ class _DailyPageState extends State<DailyPage> {
           child: ListView(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.all(widthOfScreen(context, 0.2)),
-                child: Text(
-                  'Daily Meal, Bitch',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: widthOfScreen(context, 0.1),
-                  ),
+                height: min(
+                    widthOfScreen(context, 0.4), heightOfScreen(context, 0.4)),
+                child: Image(
+                  image: AssetImage('assets/images/grubhie_logo.gif'),
                 ),
               ),
-              GridView.count(
-                crossAxisCount: 2,
+              ListView(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 children: [
-                  kcustomWidget(
-                      inputText: 'HI',
-                      col: randomColor(),
-                      inputMargin: widthOfScreen(context, 0.03)),
-                  kcustomWidget(
-                      inputText: 'HENLO',
-                      col: randomColor(),
-                      inputMargin: widthOfScreen(context, 0.03)),
-                  kcustomWidget(
-                      inputText: 'OMG??',
-                      col: randomColor(),
-                      inputMargin: widthOfScreen(context, 0.03)),
-                  kcustomWidget(
-                      inputText: 'CUSTOM',
-                      col: randomColor(),
-                      inputMargin: widthOfScreen(context, 0.03)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/recipes');
+                    },
+                    child: kcustomWidget(
+                        inputText: 'RECIPE',
+                        col: 'ea9052'.toColor(),
+                        inputMarginSides: widthOfScreen(context, marginSides),
+                        inputMarginTop: widthOfScreen(context, marginTop),
+                        height: widthOfScreen(context, 0.3)),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/recipes');
+                    },
+                    child: kcustomWidget(
+                        inputText: 'FUNCTION 2',
+                        col: '77b255'.toColor(),
+                        inputMarginSides: widthOfScreen(context, marginSides),
+                        inputMarginTop: widthOfScreen(context, marginTop),
+                        height: widthOfScreen(context, 0.3)),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/recipes');
+                    },
+                    child: kcustomWidget(
+                        inputText: 'FUNCTION 3',
+                        col: 'e84060'.toColor(),
+                        inputMarginSides: widthOfScreen(context, marginSides),
+                        inputMarginTop: widthOfScreen(context, marginTop),
+                        height: widthOfScreen(context, 0.3)),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/recipes');
+                    },
+                    child: kcustomWidget(
+                        inputText: 'FUNCTION 4',
+                        col: '6840e8'.toColor(),
+                        inputMarginSides: widthOfScreen(context, marginSides),
+                        inputMarginTop: widthOfScreen(context, marginTop),
+                        height: widthOfScreen(context, 0.3)),
+                  ),
                 ],
               ),
             ],
@@ -85,15 +108,18 @@ Expanded kcustomWidget(
     Color col = Colors.teal,
     double width = 0,
     double height = 100,
-    double inputMargin = 10.00}) {
+    double inputMarginTop = 0,
+    double inputMarginSides = 0,
+    Alignment alignText = Alignment.center}) {
   return Expanded(
     child: Container(
-      margin: EdgeInsets.all(inputMargin),
+      margin: EdgeInsets.symmetric(
+          horizontal: inputMarginSides, vertical: inputMarginTop),
       height: height,
       width: width,
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(30.0),
         ),
         child: Text(inputText),
         color: col,
