@@ -95,7 +95,7 @@ class _DailyPageState extends State<DailyPage> {
                       Navigator.pushNamed(context, '/recipes');
                     },
                     child: kcustomWidget(
-                        inputText: 'Last Function',
+                        inputText: 'What to cook?',
                         col: '6840e8'.toColor(),
                         inputMarginSides: widthOfScreen(context, marginSides),
                         inputMarginTop: widthOfScreen(context, marginTop),
