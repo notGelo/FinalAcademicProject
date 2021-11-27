@@ -17,7 +17,7 @@ class _RecipesState extends State<Recipes> {
   List<Model> list = <Model>[];
   String? text;
   final url =
-      'https://api.edamam.com/search?q=filipino&app_id=2e2604e9&app_key=444a2c93c792b342e5507bba576d0220&from=0&to=30&calories=591-722&health=alcohol-free';
+      'https://api.edamam.com/search?q=pie&app_id=2e2604e9&app_key=444a2c93c792b342e5507bba576d0220&from=0&to=20&calories=591-722&health=alcohol-free';
   getApiData() async {
     var response = await http.get(Uri.parse(url));
     Map json = jsonDecode(response.body);
@@ -45,12 +45,12 @@ class _RecipesState extends State<Recipes> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          actions: [
-            ChangeThemeButtonWidget(),
-          ],
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        //   actions: [
+        //     ChangeThemeButtonWidget(),
+        //   ],
+        // ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -98,7 +98,7 @@ class _RecipesState extends State<Recipes> {
                   shrinkWrap: true,
                   primary: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: (15 / 20),
+                      childAspectRatio: (16 / 20),
                       crossAxisCount: 2,
                       crossAxisSpacing: 18,
                       mainAxisSpacing: 18),
@@ -116,46 +116,75 @@ class _RecipesState extends State<Recipes> {
                                     )));
                       },
                       child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.7),
+                              offset:
+                                  Offset(0, 1.3), // changes position of shadow
+                            ),
+                          ],
+                        ),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Expanded(
+                                flex: 8,
                                 child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20)),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    x.image.toString(),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20)),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        x.image.toString(),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            )),
-                            Container(
-                              padding: EdgeInsets.all(3),
-                              height: 20,
-                              color: col.withOpacity(0.7),
-                              child: Center(
-                                child: Text(
-                                  x.label.toString().toUpperCase(),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
+                                )),
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                padding: EdgeInsets.all(3),
+                                color: col,
+                                child: Center(
+                                  child: Text(
+                                    x.label.toString().toUpperCase(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      shadows: [
+                                        Shadow(
+                                          color: Colors.black,
+                                          offset: Offset(0.5, 0.5),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(3),
-                              height: 20,
-                              color: col.withOpacity(0.7),
-                              child: Center(
-                                child: Text(
-                                  "source: " + x.source.toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20),
+                                  ),
+                                  color: col,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "from " + x.source.toString(),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -230,12 +259,12 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          actions: [
-            ChangeThemeButtonWidget(),
-          ],
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.transparent,
+        //   actions: [
+        //     ChangeThemeButtonWidget(),
+        //   ],
+        // ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -283,7 +312,7 @@ class _SearchPageState extends State<SearchPage> {
                   shrinkWrap: true,
                   primary: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: (15 / 20),
+                      childAspectRatio: (16 / 20),
                       crossAxisCount: 2,
                       crossAxisSpacing: 18,
                       mainAxisSpacing: 18),
@@ -301,46 +330,75 @@ class _SearchPageState extends State<SearchPage> {
                                     )));
                       },
                       child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.7),
+                              offset:
+                                  Offset(0, 1.3), // changes position of shadow
+                            ),
+                          ],
+                        ),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Expanded(
+                                flex: 8,
                                 child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20)),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    x.image.toString(),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        topRight: Radius.circular(20)),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        x.image.toString(),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            )),
-                            Container(
-                              padding: EdgeInsets.all(3),
-                              height: 20,
-                              color: col.withOpacity(0.7),
-                              child: Center(
-                                child: Text(
-                                  x.label.toString().toUpperCase(),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
+                                )),
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                padding: EdgeInsets.all(3),
+                                color: col,
+                                child: Center(
+                                  child: Text(
+                                    x.label.toString().toUpperCase(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      shadows: [
+                                        Shadow(
+                                          color: Colors.black,
+                                          offset: Offset(0.5, 0.5),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(3),
-                              height: 20,
-                              color: col.withOpacity(0.7),
-                              child: Center(
-                                child: Text(
-                                  "source: " + x.source.toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20),
+                                  ),
+                                  color: col,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "from " + x.source.toString(),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),

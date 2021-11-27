@@ -27,15 +27,15 @@ int my_color = 0;
 Color randomColor() {
   my_color++;
   if (my_color == 1) {
-    return 'ad4a06'.toColor();
+    return 'ea9052'.toColor();
   } else if (my_color == 2) {
-    return 'c70228'.toColor();
+    return 'e84060'.toColor();
   } else if (my_color == 3) {
-    return '317f04'.toColor();
+    return '77b255'.toColor();
   } else if (my_color == 4) {
     my_color = 0;
   }
-  return '3008b0'.toColor();
+  return '6840e8'.toColor();
 }
 
 //hexColorShemene
