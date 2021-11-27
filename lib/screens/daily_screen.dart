@@ -67,7 +67,7 @@ class _DailyPageState extends State<DailyPage> {
                       Navigator.pushNamed(context, '/recipes');
                     },
                     child: kcustomWidget(
-                        inputText: 'Second',
+                        inputText: 'My Favorites',
                         col: 'e84060'.toColor(),
                         inputMarginSides: widthOfScreen(context, marginSides),
                         inputMarginTop: widthOfScreen(context, marginTop),
@@ -81,7 +81,7 @@ class _DailyPageState extends State<DailyPage> {
                       Navigator.pushNamed(context, '/recipes');
                     },
                     child: kcustomWidget(
-                        inputText: 'Third',
+                        inputText: 'Shopping Cart',
                         col: '77b255'.toColor(),
                         inputMarginSides: widthOfScreen(context, marginSides),
                         inputMarginTop: widthOfScreen(context, marginTop),
@@ -95,7 +95,7 @@ class _DailyPageState extends State<DailyPage> {
                       Navigator.pushNamed(context, '/recipes');
                     },
                     child: kcustomWidget(
-                        inputText: 'Third po',
+                        inputText: 'Last Function',
                         col: '6840e8'.toColor(),
                         inputMarginSides: widthOfScreen(context, marginSides),
                         inputMarginTop: widthOfScreen(context, marginTop),
