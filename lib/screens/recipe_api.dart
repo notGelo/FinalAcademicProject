@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:grubhie/customWidgets/change_theme_button_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Recipes extends StatefulWidget {
@@ -43,8 +44,10 @@ class _RecipesState extends State<Recipes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        title: Text('Recipes Page'),
+        backgroundColor: Colors.transparent,
+        actions: [
+          ChangeThemeButtonWidget(),
+        ],
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
@@ -206,8 +209,10 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        title: Text('Recipes Page'),
+        backgroundColor: Colors.transparent,
+        actions: [
+          ChangeThemeButtonWidget(),
+        ],
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
