@@ -92,7 +92,7 @@ class _DailyPageState extends State<DailyPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/recipes');
+                      Navigator.pushNamed(context, '/random');
                     },
                     child: kcustomWidget(
                         inputText: 'What to cook?',
