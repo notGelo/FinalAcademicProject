@@ -22,9 +22,20 @@ double heightOfScreen(BuildContext context, double height) {
 }
 
 //random color generator
+
+int my_color = 0;
 Color randomColor() {
-  Random random = new Random();
-  return Color((random.nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+  my_color++;
+  if (my_color == 1) {
+    return 'ad4a06'.toColor();
+  } else if (my_color == 2) {
+    return 'c70228'.toColor();
+  } else if (my_color == 3) {
+    return '317f04'.toColor();
+  } else if (my_color == 4) {
+    my_color = 0;
+  }
+  return '3008b0'.toColor();
 }
 
 //hexColorShemene

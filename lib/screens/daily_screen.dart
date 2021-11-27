@@ -40,6 +40,8 @@ class _DailyPageState extends State<DailyPage> {
               Container(
                 height: min(
                     widthOfScreen(context, 0.4), heightOfScreen(context, 0.4)),
+                margin: new EdgeInsets.symmetric(
+                    vertical: widthOfScreen(context, 0.05)),
                 child: Image(
                   image: AssetImage('assets/images/grubhie_logo.gif'),
                 ),
