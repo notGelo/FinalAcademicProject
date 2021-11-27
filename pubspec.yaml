@@ -33,6 +33,7 @@ dependencies:
   http: ^0.13.4
   webview_flutter: ^2.3.1
   flutter_spinkit: ^5.1.0
+  flutter_markdown: ^0.6.8
 dev_dependencies:
   flutter_test:
     sdk: flutter
