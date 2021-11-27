@@ -9,6 +9,7 @@ import 'package:grubhie/screens/recipeSteps_screen.dart';
 import 'package:grubhie/screens/filteredRecipe_screen.dart';
 import 'package:grubhie/screens/daily_screen.dart';
 import 'package:grubhie/screens/recipe_api.dart';
+import 'package:grubhie/screens/random_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:grubhie/provider/theme_provider.dart';
 
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
               '/recipeSteps': (context) => RecipeStepsPage(),
               '/filteredRecipe': (context) => FilteredRecipePage(),
               '/recipes': (context) => Recipes(),
+              '/random': (context) => RandomRecipe(),
             },
           );
         },
