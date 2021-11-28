@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:grubhie/models.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +10,9 @@ import 'package:grubhie/customWidgets/change_theme_button_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Recipes extends StatefulWidget {
+  final state;
+  Recipes({this.state});
+
   @override
   _RecipesState createState() => _RecipesState();
 }
@@ -106,93 +110,113 @@ class _RecipesState extends State<Recipes> {
                   itemBuilder: (context, i) {
                     final x = list[i];
                     Color col = randomColor();
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WebPage(
-                                      url: x.url,
-                                    )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.7),
-                              offset:
-                                  Offset(0, 1.3), // changes position of shadow
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                                flex: 8,
+                    return Stack(children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WebPage(
+                                    url: x.url,
+                                  )));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.7),
+                                offset:
+                                Offset(0, 1.3), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                  flex: 8,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20)),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                          x.image.toString(),
+                                        ),
+                                      ),
+                                    ),
+                                  )),
+                              Expanded(
+                                flex: 2,
                                 child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(20),
-                                        topRight: Radius.circular(20)),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        x.image.toString(),
+                                  padding: EdgeInsets.all(3),
+                                  color: col,
+                                  child: Center(
+                                    child: Text(
+                                      x.label.toString().toUpperCase(),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        shadows: [
+                                          Shadow(
+                                            color: Colors.black,
+                                            offset: Offset(0.5, 0.5),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                )),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                padding: EdgeInsets.all(3),
-                                color: col,
-                                child: Center(
-                                  child: Text(
-                                    x.label.toString().toUpperCase(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                      shadows: [
-                                        Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(0.5, 0.5),
-                                        ),
-                                      ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  padding: EdgeInsets.all(3),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20),
+                                    ),
+                                    color: col,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "from " + x.source.toString(),
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
-                                  ),
-                                  color: col,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "from " + x.source.toString(),
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    );
+                      Positioned( // will be positioned in the top right of the container
+                        top: 0,
+                        right: 0,
+                        // child: Icon(
+                        //   FontAwesomeIcons.solidHeart, color: Colors.white,
+                        // ),
+                        child: IconButton(
+                          icon: Icon(
+                            FontAwesomeIcons.solidHeart, color: Colors.white,
+                          ),
+                          onPressed: (() {
+                            var state = widget.state;
+                            print(x.url);
+                            print(state);
+                            print(x);
+                            state['addFavorite'](x);
+                          }))
+                      )
+                    ]);
                   },
                 )
               ],
