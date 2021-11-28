@@ -66,7 +66,7 @@ class _DailyPageState extends State<DailyPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/recipes');
+                      Navigator.pushNamed(context, '/favorites');
                     },
                     child: kcustomWidget(
                         inputText: 'My Favorites',

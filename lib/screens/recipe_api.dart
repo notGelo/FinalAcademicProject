@@ -206,14 +206,19 @@ class _RecipesState extends State<Recipes> {
                         // ),
                         child: IconButton(
                           icon: Icon(
-                            FontAwesomeIcons.solidHeart, color: Colors.white,
+                            FontAwesomeIcons.solidHeart, color: 
+                    widget.state['favorites'][x.url] is Model ? Colors.red : Colors.white,
                           ),
                           onPressed: (() {
                             var state = widget.state;
-                            print(x.url);
-                            print(state);
-                            print(x);
-                            state['addFavorite'](x);
+                            bool isFavorite = widget.state['favorites'][x.url] is Model;
+
+                            if (isFavorite) {
+                              state['removeFavorite'](x.url);
+                            } else {
+                              // not favorite yet, so add it.
+                              state['addFavorite'](x);
+                            }
                           }))
                       )
                     ]);

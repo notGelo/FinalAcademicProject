@@ -10,10 +10,13 @@ import 'package:grubhie/screens/recipeSteps_screen.dart';
 import 'package:grubhie/screens/filteredRecipe_screen.dart';
 import 'package:grubhie/screens/daily_screen.dart';
 import 'package:grubhie/screens/recipe_api.dart';
+import 'package:grubhie/screens/favorites_screen.dart';
 import 'package:grubhie/screens/random_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:grubhie/provider/theme_provider.dart';
 import 'package:grubhie/screens/shopping_list.dart';
+import 'package:localstorage/localstorage.dart';
+import 'dart:convert';
 
 void main() => runApp(MyApp());
 
@@ -26,22 +29,58 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var favorites = {};
+  // final LocalStorage storage = new LocalStorage('grubhie');
 
   void addFavorite(Model recipe) {
     setState(() {
       favorites[recipe.url] = (recipe);
+      // storeFavorites();
     });
   }
 
   void removeFavorite(String url) {
     setState(() {
       favorites.remove(url);
+      // storeFavorites();
     });
   }
 
+  // output: List<Model>
   List listFavorites() {
     return favorites.values.toList();
   }
+
+  // void storeFavorites() {
+  //   storage.setItem('favorites', json.encode(listJsonFavorites()));
+  // }
+
+  // void parseFavorites(String listString) {
+  //   List result = json.decode(listString);
+  //   result.forEach((element) {
+  //     addFavorite(Model.parse(element));
+  //   });
+  // }
+
+  // List listJsonFavorites() {
+  //   var list = [];
+  //   favorites.forEach((key, value) {
+  //     print(value);
+  //     print(value.toList());
+  //     list.add(value.toList());
+  //   });
+  //   return list;
+  // }
+
+  // @override
+  // initState() {
+  //   super.initState();
+
+  //   // get favorites from storage
+  //   var result = storage.getItem('favorites');
+  //   if (result != null) {
+  //     parseFavorites(result);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +116,7 @@ class _MyAppState extends State<MyApp> {
             '/recipeSteps': (context) => RecipeStepsPage(),
             '/filteredRecipe': (context) => FilteredRecipePage(),
             '/recipes': (context) => Recipes(state: state),
+            '/favorites': (context) => Favorites(state: state),
             '/random': (context) => RandomRecipe(),
             '/shoplist': (context) => ShoppingList(),
           },
