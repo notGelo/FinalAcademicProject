@@ -90,8 +90,6 @@ class _MyAppState extends State<MyApp> {
       'removeFavorite': removeFavorite,
       'listFavorites': listFavorites,
     };
-    print(listFavorites());
-    print(listFavorites().length);
     return ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
       builder: (context, _) {
