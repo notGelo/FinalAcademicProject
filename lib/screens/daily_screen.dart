@@ -80,10 +80,10 @@ class _DailyPageState extends State<DailyPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/recipes');
+                      Navigator.pushNamed(context, '/shoplist');
                     },
                     child: kcustomWidget(
-                        inputText: 'Shopping Cart',
+                        inputText: 'Shopping List',
                         col: '77b255'.toColor(),
                         inputMarginSides: widthOfScreen(context, marginSides),
                         inputMarginTop: widthOfScreen(context, marginTop),

@@ -12,6 +12,7 @@ import 'package:grubhie/screens/recipe_api.dart';
 import 'package:grubhie/screens/random_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:grubhie/provider/theme_provider.dart';
+import 'package:grubhie/screens/shopping_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
               '/filteredRecipe': (context) => FilteredRecipePage(),
               '/recipes': (context) => Recipes(),
               '/random': (context) => RandomRecipe(),
+              '/shoplist': (context) => ShoppingList(),
             },
           );
         },
