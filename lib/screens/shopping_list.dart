@@ -39,7 +39,7 @@ class _ShoppingListState extends State<ShoppingList> {
             'Shopping List',
             style: TextStyle(fontSize: 24),
           ),
-          actions: [Icon(Icons.search), SizedBox(width: 12)],
+          // actions: [Icon(Icons.search), SizedBox(width: 12)],
         ),
         body: Center(
           child: isLoading
