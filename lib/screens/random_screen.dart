@@ -10,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'loading_screen.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-
 class RandomRecipe extends StatefulWidget {
   @override
   _RandomRecipeState createState() => _RandomRecipeState();
@@ -23,7 +22,7 @@ class _RandomRecipeState extends State<RandomRecipe> {
   String? text;
   final headers = {
     "x-rapidapi-host": "yummly2.p.rapidapi.com",
-    "x-rapidapi-key": "acee6b37cfmshff696df4f2b7b89p1deb03jsn9d0c2c566b5f"
+    "x-rapidapi-key": "6f1631ab05msha6e80d8960887e3p1f86e2jsn8bd9de764450"
   };
   final url =
       'https://yummly2.p.rapidapi.com/feeds/list?limit=100&start=0&tag=list.recipe.popular';
