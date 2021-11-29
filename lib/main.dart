@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grubhie/screens/favorites_screen.dart';
 import 'package:grubhie/screens/home_screen.dart';
 import 'package:grubhie/screens/main_menu_screen.dart';
 import 'package:grubhie/screens/recipe_api.dart';
@@ -7,7 +8,10 @@ import 'package:provider/provider.dart';
 import 'package:grubhie/provider/theme_provider.dart';
 import 'package:grubhie/screens/shopping_list.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -28,6 +32,7 @@ class MyApp extends StatelessWidget {
               '/home': (context) => HomeScreen(),
               '/main': (context) => MainMenu(),
               '/recipes': (context) => Recipes(),
+              '/favorites': (context) => FavoritesScreen(),
               '/random': (context) => RandomRecipe(),
               '/shoplist': (context) => ShoppingList(),
             },

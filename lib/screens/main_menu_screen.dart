@@ -65,7 +65,7 @@ class _MainMenuState extends State<MainMenu> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/recipes');
+                      Navigator.pushNamed(context, '/favorites');
                     },
                     child: kcustomWidget(
                         inputText: 'My Favorites',

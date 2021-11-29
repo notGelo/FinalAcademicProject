@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:grubhie/utilities/constants.dart';
+import 'package:grubhie/utilities/favorites.dart';
 
 class Recipes extends StatefulWidget {
   @override
@@ -193,6 +194,31 @@ class _RecipesState extends State<Recipes> {
                                       ),
                                     ),
                                   ),
+                                  Expanded(
+                                      child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.white),
+                                      foregroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.blue),
+                                    ),
+                                    onPressed: () async {
+                                      print(x.url.toString());
+                                      print(x.image.toString());
+                                      print(x.source.toString());
+                                      print(x.label.toString());
+
+                                      await DatabaseHelper.instance.add(
+                                          Favorites(
+                                              url: x.url.toString(),
+                                              label: x.label.toString(),
+                                              image: x.image.toString(),
+                                              source: x.source.toString()));
+                                    },
+                                    child: Text('TextButton'),
+                                  ))
                                 ],
                               ),
                             ),

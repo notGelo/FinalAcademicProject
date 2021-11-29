@@ -22,7 +22,6 @@ double heightOfScreen(BuildContext context, double height) {
 }
 
 //random color generator
-
 int my_color = 0;
 Color randomColor() {
   my_color++;
