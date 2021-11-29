@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:grubhie/utilities/note_models.dart';
+import 'package:grubhie/utilities/constants.dart';
 
 final _lightColors = [
-  Colors.amber.shade300,
-  Colors.lightGreen.shade300,
-  Colors.lightBlue.shade300,
-  Colors.orange.shade300,
-  Colors.pinkAccent.shade100,
-  Colors.tealAccent.shade100
+  'ea9052'.toColor(),
+  'e84060'.toColor(),
+  '77b255'.toColor(),
+  '6840e8'.toColor(),
 ];
 
 class NoteCardWidget extends StatelessWidget {

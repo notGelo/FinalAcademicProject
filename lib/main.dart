@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grubhie/screens/home_screen.dart';
-import 'package:grubhie/screens/cuisine_page.dart';
-import 'package:grubhie/screens/ingredients_screen.dart';
-import 'package:grubhie/screens/category_screen.dart';
-import 'package:grubhie/screens/list_screen.dart';
-import 'package:grubhie/screens/recipe_screen.dart';
-import 'package:grubhie/screens/recipeSteps_screen.dart';
-import 'package:grubhie/screens/filteredRecipe_screen.dart';
-import 'package:grubhie/screens/daily_screen.dart';
+import 'package:grubhie/screens/main_menu_screen.dart';
 import 'package:grubhie/screens/recipe_api.dart';
 import 'package:grubhie/screens/random_screen.dart';
 import 'package:provider/provider.dart';
@@ -33,14 +26,7 @@ class MyApp extends StatelessWidget {
             home: HomeScreen(),
             routes: {
               '/home': (context) => HomeScreen(),
-              '/daily': (context) => DailyPage(),
-              '/cuisine': (context) => CuisinePage(),
-              '/ingredients': (context) => IngredientsPage(),
-              '/category': (context) => CategoryPage(),
-              '/list': (context) => ListPage(),
-              '/recipe': (context) => RecipePage(),
-              '/recipeSteps': (context) => RecipeStepsPage(),
-              '/filteredRecipe': (context) => FilteredRecipePage(),
+              '/main': (context) => MainMenu(),
               '/recipes': (context) => Recipes(),
               '/random': (context) => RandomRecipe(),
               '/shoplist': (context) => ShoppingList(),

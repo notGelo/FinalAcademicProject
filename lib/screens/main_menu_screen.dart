@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
 import 'dart:math';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class DailyPage extends StatefulWidget {
+class MainMenu extends StatefulWidget {
   @override
-  _DailyPageState createState() => _DailyPageState();
+  _MainMenuState createState() => _MainMenuState();
 }
 
-class _DailyPageState extends State<DailyPage> {
+class _MainMenuState extends State<MainMenu> {
   @override
   double marginTop = 0.01;
   double marginSides = 0.05;
@@ -117,7 +116,7 @@ class _DailyPageState extends State<DailyPage> {
 }
 
 //REUSABLE WIDGETS
-Expanded kcustomWidget(
+Container kcustomWidget(
     {String inputText = '',
     Color col = Colors.teal,
     double width = 0,
@@ -129,91 +128,87 @@ Expanded kcustomWidget(
     String iconImage = '',
     double radius = 0}) {
   if (picSide == 'right') {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.symmetric(
-            horizontal: inputMarginSides, vertical: inputMarginTop),
-        height: height,
-        width: width,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(radius * 1.5),
-              topRight: Radius.circular(radius / 2),
-              bottomLeft: Radius.circular(radius * 1.5),
-              bottomRight: Radius.circular(radius / 2),
-            ),
+    return Container(
+      margin: EdgeInsets.symmetric(
+          horizontal: inputMarginSides, vertical: inputMarginTop),
+      height: height,
+      width: width,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(radius * 1.5),
+            topRight: Radius.circular(radius / 2),
+            bottomLeft: Radius.circular(radius * 1.5),
+            bottomRight: Radius.circular(radius / 2),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: radius),
-                child: Text(
-                  inputText,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: height / 4,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black,
-                        offset: Offset(1, 1),
-                      ),
-                    ],
-                  ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: radius),
+              child: Text(
+                inputText,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: height / 4,
+                  shadows: [
+                    Shadow(
+                      color: Colors.black,
+                      offset: Offset(1, 1),
+                    ),
+                  ],
                 ),
               ),
-              Image(
-                image: AssetImage(iconImage),
-              ),
-            ],
-          ),
-          color: col,
+            ),
+            Image(
+              image: AssetImage(iconImage),
+            ),
+          ],
         ),
+        color: col,
       ),
     );
   } else {
-    return Expanded(
-      child: Container(
-        margin: EdgeInsets.symmetric(
-            horizontal: inputMarginSides, vertical: inputMarginTop),
-        height: height,
-        width: width,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(radius / 2),
-              topRight: Radius.circular(radius * 1.5),
-              bottomLeft: Radius.circular(radius / 2),
-              bottomRight: Radius.circular(radius * 1.5),
-            ),
+    return Container(
+      margin: EdgeInsets.symmetric(
+          horizontal: inputMarginSides, vertical: inputMarginTop),
+      height: height,
+      width: width,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(radius / 2),
+            topRight: Radius.circular(radius * 1.5),
+            bottomLeft: Radius.circular(radius / 2),
+            bottomRight: Radius.circular(radius * 1.5),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image(
-                image: AssetImage(iconImage),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: radius),
-                child: Text(
-                  inputText,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: height / 4,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black,
-                        offset: Offset(1, 1),
-                      ),
-                    ],
-                  ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image(
+              image: AssetImage(iconImage),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: radius),
+              child: Text(
+                inputText,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: height / 4,
+                  shadows: [
+                    Shadow(
+                      color: Colors.black,
+                      offset: Offset(1, 1),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-          color: col,
+            ),
+          ],
         ),
+        color: col,
       ),
     );
   }

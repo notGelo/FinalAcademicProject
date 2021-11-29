@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
-import 'package:grubhie/utilities/constants.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -31,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/daily');
+                      Navigator.pushNamed(context, '/main');
                     },
                     child: Image(
                       image: AssetImage('assets/images/grubhie_logo.gif'),

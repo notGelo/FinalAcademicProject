@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:grubhie/models.dart';
+import 'package:grubhie/utilities/models.dart';
 import 'package:flutter/material.dart';
 import 'package:grubhie/screens/loading_screen.dart';
 import 'package:grubhie/utilities/constants.dart';
@@ -32,18 +32,23 @@ class _RandomRecipeState extends State<RandomRecipe> {
     var random = new Random();
     var index = random.nextInt(json['feed'].length);
     var e = json['feed'][index];
-    description = e['seo']['firebase']['description'];
 
-    Model model = Model(
-      image: e['display']['images'][0],
-      url: e['seo']['firebase']['webUrl'],
-      source: e['display']['source']['sourceDisplayName'],
-      label: e['display']['displayName'],
-    );
-    setState(() {
-      loading = false;
-      list.add(model);
-    });
+    try {
+      description = e['seo']['firebase']['description'];
+      Model model = Model(
+        image: e['display']['images'][0],
+        url: e['seo']['firebase']['webUrl'],
+        source: e['display']['source']['sourceDisplayName'],
+        label: e['display']['displayName'],
+      );
+      setState(() {
+        loading = false;
+        list.add(model);
+      });
+    } catch (e) {
+      list.clear();
+      getApiData();
+    }
   }
 
   @override
