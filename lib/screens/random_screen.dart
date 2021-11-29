@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:grubhie/models.dart';
 import 'package:flutter/material.dart';
+import 'package:grubhie/screens/loading_screen.dart';
+import 'package:grubhie/utilities/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'loading_screen.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 class RandomRecipe extends StatefulWidget {
@@ -14,6 +16,7 @@ class RandomRecipe extends StatefulWidget {
 }
 
 class _RandomRecipeState extends State<RandomRecipe> {
+  bool loading = true;
   List<Model> list = <Model>[];
   var description = '';
   String? text;
@@ -38,6 +41,7 @@ class _RandomRecipeState extends State<RandomRecipe> {
       label: e['display']['displayName'],
     );
     setState(() {
+      loading = false;
       list.add(model);
     });
   }
@@ -51,93 +55,103 @@ class _RandomRecipeState extends State<RandomRecipe> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text('What to cook?'),
-      ),
-      body: Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 10,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              MarkdownBody(data: description),
-              SizedBox(
-                height: 15,
+    return loading
+        ? Loading()
+        : Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              title: Text('What to cook?'),
+            ),
+            body: Container(
+              height: getScreenHeight(context),
+              width: getScreenWidth(context),
+              padding: EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 10,
               ),
-              GridView.builder(
-                physics: ScrollPhysics(),
-                shrinkWrap: true,
-                primary: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15),
-                itemCount: list.length,
-                itemBuilder: (context, i) {
-                  final x = list[i];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => WebPage(
-                                    url: x.url,
-                                  )));
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: NetworkImage(
-                            x.image.toString(),
-                          ),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(3),
-                            height: 20,
-                            color: Colors.black.withOpacity(0.5),
-                            child: Center(
-                              child: Text(
-                                x.label.toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(3),
-                            height: 20,
-                            color: Colors.black.withOpacity(0.5),
-                            child: Center(
-                              child: Text(
-                                "source: " + x.source.toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/bg_plain.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    MarkdownBody(data: description),
+                    SizedBox(
+                      height: 15,
                     ),
-                  );
-                },
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+                    GridView.builder(
+                      physics: ScrollPhysics(),
+                      shrinkWrap: true,
+                      primary: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15),
+                      itemCount: list.length,
+                      itemBuilder: (context, i) {
+                        final x = list[i];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => WebPage(
+                                          url: x.url,
+                                        )));
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(
+                                  x.image.toString(),
+                                ),
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(3),
+                                  height: 20,
+                                  color: Colors.black.withOpacity(0.5),
+                                  child: Center(
+                                    child: Text(
+                                      x.label.toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(3),
+                                  height: 20,
+                                  color: Colors.black.withOpacity(0.5),
+                                  child: Center(
+                                    child: Text(
+                                      "source: " + x.source.toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
   }
 }
 

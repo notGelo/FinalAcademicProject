@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:grubhie/models.dart';
 import 'package:flutter/material.dart';
+import 'package:grubhie/screens/loading_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,10 +15,11 @@ class Recipes extends StatefulWidget {
 }
 
 class _RecipesState extends State<Recipes> {
+  bool loading = true;
   List<Model> list = <Model>[];
   String? text;
   final url =
-      'https://api.edamam.com/search?q=pie&app_id=2e2604e9&app_key=444a2c93c792b342e5507bba576d0220&from=0&to=20&calories=591-722&health=alcohol-free';
+      'https://api.edamam.com/search?q=cake&app_id=2e2604e9&app_key=444a2c93c792b342e5507bba576d0220&from=0&to=20&calories=591-722&health=alcohol-free';
   getApiData() async {
     var response = await http.get(Uri.parse(url));
     Map json = jsonDecode(response.body);
@@ -29,6 +31,7 @@ class _RecipesState extends State<Recipes> {
         label: e['recipe']['label'],
       );
       setState(() {
+        loading = false;
         list.add(model);
       });
     });
@@ -43,164 +46,167 @@ class _RecipesState extends State<Recipes> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   actions: [
-        //     ChangeThemeButtonWidget(),
-        //   ],
-        // ),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/bg_plain.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          padding: EdgeInsets.only(
-              top: getScreenWidth(context) * 0.05,
-              right: getScreenWidth(context) * 0.03,
-              bottom: getScreenWidth(context) * 0,
-              left: getScreenWidth(context) * 0.03),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextField(
-                  onChanged: (v) {
-                    text = v;
-                  },
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    SearchPage(search: text)));
-                      },
-                      icon: Icon(Icons.search),
-                    ),
-                    hintText: "Search For Recipes..",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
+    return loading
+        ? Loading()
+        : SafeArea(
+            child: Scaffold(
+              // appBar: AppBar(
+              //   backgroundColor: Colors.transparent,
+              //   actions: [
+              //     ChangeThemeButtonWidget(),
+              //   ],
+              // ),
+              body: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/bg_plain.png'),
+                    fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(
-                  height: 15,
-                ),
-                GridView.builder(
-                  physics: ScrollPhysics(),
-                  shrinkWrap: true,
-                  primary: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: (16 / 20),
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 18,
-                      mainAxisSpacing: 18),
-                  itemCount: list.length,
-                  itemBuilder: (context, i) {
-                    final x = list[i];
-                    Color col = randomColor();
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WebPage(
-                                      url: x.url,
-                                    )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.7),
-                              offset:
-                                  Offset(0, 1.3), // changes position of shadow
-                            ),
-                          ],
+                padding: EdgeInsets.only(
+                    top: getScreenWidth(context) * 0.05,
+                    right: getScreenWidth(context) * 0.03,
+                    bottom: getScreenWidth(context) * 0,
+                    left: getScreenWidth(context) * 0.03),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextField(
+                        onChanged: (v) {
+                          text = v;
+                        },
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          SearchPage(search: text)));
+                            },
+                            icon: Icon(Icons.search),
+                          ),
+                          hintText: "Search For Recipes..",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          fillColor: Colors.white,
+                          filled: true,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                                flex: 8,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(20),
-                                        topRight: Radius.circular(20)),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        x.image.toString(),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      GridView.builder(
+                        physics: ScrollPhysics(),
+                        shrinkWrap: true,
+                        primary: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: (16 / 20),
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 18,
+                            mainAxisSpacing: 18),
+                        itemCount: list.length,
+                        itemBuilder: (context, i) {
+                          final x = list[i];
+                          Color col = randomColor();
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WebPage(
+                                            url: x.url,
+                                          )));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.7),
+                                    offset: Offset(
+                                        0, 1.3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                      flex: 8,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20)),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(
+                                              x.image.toString(),
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      padding: EdgeInsets.all(3),
+                                      color: col,
+                                      child: Center(
+                                        child: Text(
+                                          x.label.toString().toUpperCase(),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            shadows: [
+                                              Shadow(
+                                                color: Colors.black,
+                                                offset: Offset(0.5, 0.5),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                )),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                padding: EdgeInsets.all(3),
-                                color: col,
-                                child: Center(
-                                  child: Text(
-                                    x.label.toString().toUpperCase(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                      shadows: [
-                                        Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(0.5, 0.5),
+                                  Expanded(
+                                    child: Container(
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          bottomRight: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20),
                                         ),
-                                      ],
+                                        color: col,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "from " + x.source.toString(),
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
                             ),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
-                                  ),
-                                  color: col,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "from " + x.source.toString(),
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                )
-              ],
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }
 
@@ -227,6 +233,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  bool loading = true;
   List<Model> list = <Model>[];
   String? text;
 
@@ -243,6 +250,7 @@ class _SearchPageState extends State<SearchPage> {
         label: e['recipe']['label'],
       );
       setState(() {
+        loading = false;
         list.add(model);
       });
     });
@@ -257,163 +265,166 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   actions: [
-        //     ChangeThemeButtonWidget(),
-        //   ],
-        // ),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/bg_plain.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          padding: EdgeInsets.only(
-              top: getScreenWidth(context) * 0.05,
-              right: getScreenWidth(context) * 0.03,
-              bottom: getScreenWidth(context) * 0,
-              left: getScreenWidth(context) * 0.03),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextField(
-                  onChanged: (v) {
-                    text = v;
-                  },
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    SearchPage(search: text)));
-                      },
-                      icon: Icon(Icons.search),
-                    ),
-                    hintText: "Search For Recipes..",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
+    return loading
+        ? Loading()
+        : SafeArea(
+            child: Scaffold(
+              // appBar: AppBar(
+              //   backgroundColor: Colors.transparent,
+              //   actions: [
+              //     ChangeThemeButtonWidget(),
+              //   ],
+              // ),
+              body: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/bg_plain.png'),
+                    fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(
-                  height: 15,
-                ),
-                GridView.builder(
-                  physics: ScrollPhysics(),
-                  shrinkWrap: true,
-                  primary: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: (16 / 20),
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 18,
-                      mainAxisSpacing: 18),
-                  itemCount: list.length,
-                  itemBuilder: (context, i) {
-                    final x = list[i];
-                    Color col = randomColor();
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WebPage(
-                                      url: x.url,
-                                    )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.7),
-                              offset:
-                                  Offset(0, 1.3), // changes position of shadow
-                            ),
-                          ],
+                padding: EdgeInsets.only(
+                    top: getScreenWidth(context) * 0.05,
+                    right: getScreenWidth(context) * 0.03,
+                    bottom: getScreenWidth(context) * 0,
+                    left: getScreenWidth(context) * 0.03),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      TextField(
+                        onChanged: (v) {
+                          text = v;
+                        },
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          SearchPage(search: text)));
+                            },
+                            icon: Icon(Icons.search),
+                          ),
+                          hintText: "Search For Recipes..",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          fillColor: Colors.white,
+                          filled: true,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                                flex: 8,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(20),
-                                        topRight: Radius.circular(20)),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        x.image.toString(),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      GridView.builder(
+                        physics: ScrollPhysics(),
+                        shrinkWrap: true,
+                        primary: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            childAspectRatio: (16 / 20),
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 18,
+                            mainAxisSpacing: 18),
+                        itemCount: list.length,
+                        itemBuilder: (context, i) {
+                          final x = list[i];
+                          Color col = randomColor();
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WebPage(
+                                            url: x.url,
+                                          )));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.7),
+                                    offset: Offset(
+                                        0, 1.3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                      flex: 8,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20)),
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(
+                                              x.image.toString(),
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                                  Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      padding: EdgeInsets.all(3),
+                                      color: col,
+                                      child: Center(
+                                        child: Text(
+                                          x.label.toString().toUpperCase(),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            shadows: [
+                                              Shadow(
+                                                color: Colors.black,
+                                                offset: Offset(0.5, 0.5),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                )),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                padding: EdgeInsets.all(3),
-                                color: col,
-                                child: Center(
-                                  child: Text(
-                                    x.label.toString().toUpperCase(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                      shadows: [
-                                        Shadow(
-                                          color: Colors.black,
-                                          offset: Offset(0.5, 0.5),
+                                  Expanded(
+                                    child: Container(
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          bottomRight: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20),
                                         ),
-                                      ],
+                                        color: col,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          "from " + x.source.toString(),
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
                             ),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(3),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
-                                  ),
-                                  color: col,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "from " + x.source.toString(),
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                )
-              ],
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }
