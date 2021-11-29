@@ -35,6 +35,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                   DatabaseHelper.instance.remove(favorite.id!);
                                 });
                               },
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => WebPage(
+                                              url: favorite.url,
+                                            )));
+                              },
                             ),
                           );
                         }).toList(),
