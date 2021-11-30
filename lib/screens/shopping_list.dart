@@ -36,11 +36,9 @@ class _ShoppingListState extends State<ShoppingList> {
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: Text(
-              'Shopping List',
-              style: TextStyle(fontSize: 24),
-            ),
-            // actions: [Icon(Icons.search), SizedBox(width: 12)],
+            elevation: 0,
+            title: Text('My Shopping List'),
+            backgroundColor: Colors.white,
           ),
           body: Center(
             child: isLoading

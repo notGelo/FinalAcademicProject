@@ -7,6 +7,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:grubhie/utilities/constants.dart';
 import 'package:grubhie/utilities/favorites.dart';
+import 'package:decorated_icon/decorated_icon.dart';
 
 class Recipes extends StatefulWidget {
   @override
@@ -50,12 +51,10 @@ class _RecipesState extends State<Recipes> {
         ? Loading()
         : SafeArea(
             child: Scaffold(
-              // appBar: AppBar(
-              //   backgroundColor: Colors.transparent,
-              //   actions: [
-              //     ChangeThemeButtonWidget(),
-              //   ],
-              // ),
+              appBar: AppBar(
+                elevation: 0,
+                title: Text('Search Recipes'),
+              ),
               body: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
@@ -170,17 +169,20 @@ class _RecipesState extends State<Recipes> {
                                                 }
                                                 return IconButton(
                                                   // style: ,
-                                                  icon: Icon(
+                                                  icon: DecoratedIcon(
                                                     Icons.favorite,
                                                     color: myColor,
                                                     size: getScreenHeight(
                                                             context) *
                                                         0.04,
+                                                    shadows: [
+                                                      BoxShadow(
+                                                        blurRadius: 13.0,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ],
                                                   ),
-                                                  // Text(
-                                                  //   'BUTTON MO PO',
-                                                  //   style: TextStyle(color: myColor),
-                                                  // ),
+
                                                   onPressed: () async {
                                                     if (snapshot.data == true) {
                                                       setState(() {
@@ -334,12 +336,10 @@ class _SearchPageState extends State<SearchPage> {
         ? Loading()
         : SafeArea(
             child: Scaffold(
-              // appBar: AppBar(
-              //   backgroundColor: Colors.transparent,
-              //   actions: [
-              //     ChangeThemeButtonWidget(),
-              //   ],
-              // ),
+              appBar: AppBar(
+                elevation: 0,
+                title: Text('Search Recipes'),
+              ),
               body: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
@@ -454,17 +454,20 @@ class _SearchPageState extends State<SearchPage> {
                                                 }
                                                 return IconButton(
                                                   // style: ,
-                                                  icon: Icon(
+                                                  icon: DecoratedIcon(
                                                     Icons.favorite,
                                                     color: myColor,
                                                     size: getScreenHeight(
                                                             context) *
                                                         0.04,
+                                                    shadows: [
+                                                      BoxShadow(
+                                                        blurRadius: 13.0,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ],
                                                   ),
-                                                  // Text(
-                                                  //   'BUTTON MO PO',
-                                                  //   style: TextStyle(color: myColor),
-                                                  // ),
+
                                                   onPressed: () async {
                                                     if (snapshot.data == true) {
                                                       setState(() {

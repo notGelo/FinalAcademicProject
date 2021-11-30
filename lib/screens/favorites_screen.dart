@@ -1,3 +1,4 @@
+import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -16,11 +17,16 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'My Favorites',
-          style: TextStyle(fontSize: 24),
+        elevation: 0,
+        centerTitle: true,
+        title: Text('My Favorites'),
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.transparent,
+        titleTextStyle: TextStyle(fontSize: 25, color: Colors.black),
+        flexibleSpace: Image(
+          image: AssetImage('assets/images/bg_plain.png'),
+          fit: BoxFit.cover,
         ),
-        // actions: [Icon(Icons.search), SizedBox(width: 12)],
       ),
       body: Container(
         padding: EdgeInsets.only(
@@ -63,15 +69,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                   begin: Alignment.bottomLeft,
                                   end: Alignment.topRight,
                                   colors: [
-                                    Colors.black.withOpacity(0.3),
-                                    Colors.black.withOpacity(0),
-                                    Colors.black.withOpacity(0.3),
+                                    Colors.black.withOpacity(0.8),
+                                    Colors.black.withOpacity(0.2),
+                                    Colors.black.withOpacity(0.5),
                                   ],
                                 ),
                               ),
                               child: Container(
-                                padding: EdgeInsets.all(
-                                    getScreenWidth(context) * 0.06),
+                                padding: EdgeInsets.only(
+                                    top: getScreenWidth(context) * 0.06,
+                                    right: getScreenWidth(context) * 0.06,
+                                    bottom: getScreenWidth(context) * 0.06,
+                                    left: getScreenWidth(context) * 0.06),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -100,19 +109,30 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                         )),
                                     Expanded(
                                       flex: 1,
-                                      child: GestureDetector(
-                                        child: Icon(
-                                          Icons.favorite,
-                                          color: Colors.red,
-                                          size: getScreenWidth(context) * 0.08,
+                                      child: Container(
+                                        alignment: Alignment.centerRight,
+                                        child: GestureDetector(
+                                          child: DecoratedIcon(
+                                            Icons.favorite,
+                                            color: Colors.red,
+                                            size:
+                                                getScreenWidth(context) * 0.08,
+                                            shadows: [
+                                              BoxShadow(
+                                                blurRadius: 15,
+                                                color: Colors.black,
+                                              ),
+                                            ],
+                                          ),
+                                          onTap: () {
+                                            _showDialog(
+                                                context, favorite.label);
+                                            setState(() {
+                                              DatabaseHelper.instance
+                                                  .remove(favorite.id!);
+                                            });
+                                          },
                                         ),
-                                        onTap: () {
-                                          _showDialog(context, favorite.label);
-                                          setState(() {
-                                            DatabaseHelper.instance
-                                                .remove(favorite.id!);
-                                          });
-                                        },
                                       ),
                                     ),
                                   ],
