@@ -13,9 +13,8 @@ class Recipes extends StatefulWidget {
   _RecipesState createState() => _RecipesState();
 }
 
-Color myColor = Colors.white;
-
 class _RecipesState extends State<Recipes> {
+  Color myColor = Colors.white;
   bool loading = true;
   List<Model> list = <Model>[];
   String? text;
@@ -112,7 +111,6 @@ class _RecipesState extends State<Recipes> {
                         itemBuilder: (context, i) {
                           final x = list[i];
                           Color col = randomColor();
-                          isFavorite(x.label.toString(), x.source.toString());
 
                           return InkWell(
                             onTap: () {
@@ -198,26 +196,47 @@ class _RecipesState extends State<Recipes> {
                                       ),
                                     ),
                                   ),
-                                  TextButton(
-                                    // style: ,
-                                    child: Text(
-                                      'BUTTON MO PO',
-                                      style: TextStyle(color: myColor),
-                                    ),
-                                    onPressed: () async {
-                                      print(x.url.toString());
-                                      print(x.image.toString());
-                                      print(x.source.toString());
-                                      print(x.label.toString());
+                                  FutureBuilder<bool>(
+                                      future: DatabaseHelper.instance
+                                          .isFavorite(x.label.toString(),
+                                              x.source.toString()),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<bool> snapshot) {
+                                        if (snapshot.data == true) {
+                                          myColor = Colors.red;
+                                        } else {
+                                          myColor = Colors.white;
+                                        }
+                                        return TextButton(
+                                          // style: ,
+                                          child: Text(
+                                            'BUTTON MO PO',
+                                            style: TextStyle(color: myColor),
+                                          ),
+                                          onPressed: () async {
+                                            if (snapshot.data == true) {
+                                              setState(() {
+                                                myColor = Colors.white;
+                                                DatabaseHelper.instance
+                                                    .remove_heart(
+                                                        x.label.toString());
+                                              });
+                                            } else {
+                                              setState(() {
+                                                myColor = Colors.red;
+                                              });
 
-                                      await DatabaseHelper.instance.add(
-                                          Favorites(
-                                              url: x.url.toString(),
-                                              label: x.label.toString(),
-                                              image: x.image.toString(),
-                                              source: x.source.toString()));
-                                    },
-                                  )
+                                              await DatabaseHelper.instance.add(
+                                                  Favorites(
+                                                      url: x.url.toString(),
+                                                      label: x.label.toString(),
+                                                      image: x.image.toString(),
+                                                      source:
+                                                          x.source.toString()));
+                                            }
+                                          },
+                                        );
+                                      })
                                 ],
                               ),
                             ),
@@ -256,6 +275,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  Color myColor = Colors.white;
   bool loading = true;
   List<Model> list = <Model>[];
   String? text;
@@ -353,6 +373,7 @@ class _SearchPageState extends State<SearchPage> {
                         itemBuilder: (context, i) {
                           final x = list[i];
                           Color col = randomColor();
+
                           return InkWell(
                             onTap: () {
                               Navigator.push(
@@ -437,6 +458,47 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                     ),
                                   ),
+                                  FutureBuilder<bool>(
+                                      future: DatabaseHelper.instance
+                                          .isFavorite(x.label.toString(),
+                                              x.source.toString()),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<bool> snapshot) {
+                                        if (snapshot.data == true) {
+                                          myColor = Colors.red;
+                                        } else {
+                                          myColor = Colors.white;
+                                        }
+                                        return TextButton(
+                                          // style: ,
+                                          child: Text(
+                                            'BUTTON MO PO',
+                                            style: TextStyle(color: myColor),
+                                          ),
+                                          onPressed: () async {
+                                            if (snapshot.data == true) {
+                                              setState(() {
+                                                myColor = Colors.white;
+                                                DatabaseHelper.instance
+                                                    .remove_heart(
+                                                        x.label.toString());
+                                              });
+                                            } else {
+                                              setState(() {
+                                                myColor = Colors.red;
+                                              });
+
+                                              await DatabaseHelper.instance.add(
+                                                  Favorites(
+                                                      url: x.url.toString(),
+                                                      label: x.label.toString(),
+                                                      image: x.image.toString(),
+                                                      source:
+                                                          x.source.toString()));
+                                            }
+                                          },
+                                        );
+                                      })
                                 ],
                               ),
                             ),
@@ -449,14 +511,5 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
           );
-  }
-}
-
-Future isFavorite(String label, String source) async {
-  bool isFavoritePls = await DatabaseHelper.instance.isFavorite(label, source);
-  if (isFavoritePls) {
-    myColor = Colors.red;
-  } else {
-    myColor = Colors.white;
   }
 }

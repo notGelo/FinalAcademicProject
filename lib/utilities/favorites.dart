@@ -85,6 +85,11 @@ class DatabaseHelper {
     return await db.delete('favorites', where: 'id = ?', whereArgs: [id]);
   }
 
+  Future<int> remove_heart(String label) async {
+    Database db = await instance.database;
+    return await db.delete('favorites', where: 'label = ?', whereArgs: [label]);
+  }
+
   Future<bool> isFavorite(String label, String source) async {
     final db = await instance.database;
 
@@ -92,7 +97,7 @@ class DatabaseHelper {
         'SELECT * FROM favorites WHERE label = ? and source = ?',
         [label, source]);
 
-    return Future<bool>.value(maps.isNotEmpty);
+    return maps.isNotEmpty;
     //return true if may laman
     //return false kapag wala
   }
