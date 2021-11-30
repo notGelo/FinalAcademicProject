@@ -68,7 +68,7 @@ class DatabaseHelper {
 
   Future<List<Favorites>> getFavorites() async {
     Database db = await instance.database;
-    var favorite = await db.query('favorites');
+    var favorite = await db.query('favorites', orderBy: 'label');
     List<Favorites> favoritesList = favorite.isNotEmpty
         ? favorite.map((c) => Favorites.fromMap(c)).toList()
         : [];
@@ -83,5 +83,17 @@ class DatabaseHelper {
   Future<int> remove(int id) async {
     Database db = await instance.database;
     return await db.delete('favorites', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<bool> isFavorite(String label, String source) async {
+    final db = await instance.database;
+
+    final maps = await db.rawQuery(
+        'SELECT * FROM favorites WHERE label = ? and source = ?',
+        [label, source]);
+
+    return Future<bool>.value(maps.isNotEmpty);
+    //return true if may laman
+    //return false kapag wala
   }
 }

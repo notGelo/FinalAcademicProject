@@ -13,6 +13,8 @@ class Recipes extends StatefulWidget {
   _RecipesState createState() => _RecipesState();
 }
 
+Color myColor = Colors.white;
+
 class _RecipesState extends State<Recipes> {
   bool loading = true;
   List<Model> list = <Model>[];
@@ -110,6 +112,8 @@ class _RecipesState extends State<Recipes> {
                         itemBuilder: (context, i) {
                           final x = list[i];
                           Color col = randomColor();
+                          isFavorite(x.label.toString(), x.source.toString());
+
                           return InkWell(
                             onTap: () {
                               Navigator.push(
@@ -194,15 +198,11 @@ class _RecipesState extends State<Recipes> {
                                       ),
                                     ),
                                   ),
-                                  Expanded(
-                                      child: TextButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.white),
-                                      foregroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.blue),
+                                  TextButton(
+                                    // style: ,
+                                    child: Text(
+                                      'BUTTON MO PO',
+                                      style: TextStyle(color: myColor),
                                     ),
                                     onPressed: () async {
                                       print(x.url.toString());
@@ -217,8 +217,7 @@ class _RecipesState extends State<Recipes> {
                                               image: x.image.toString(),
                                               source: x.source.toString()));
                                     },
-                                    child: Text('TextButton'),
-                                  ))
+                                  )
                                 ],
                               ),
                             ),
@@ -450,5 +449,14 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
           );
+  }
+}
+
+Future isFavorite(String label, String source) async {
+  bool isFavoritePls = await DatabaseHelper.instance.isFavorite(label, source);
+  if (isFavoritePls) {
+    myColor = Colors.red;
+  } else {
+    myColor = Colors.white;
   }
 }

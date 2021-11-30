@@ -33,34 +33,36 @@ class _ShoppingListState extends State<ShoppingList> {
     setState(() => isLoading = false);
   }
 
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Shopping List',
-            style: TextStyle(fontSize: 24),
+  Widget build(BuildContext context) => SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Shopping List',
+              style: TextStyle(fontSize: 24),
+            ),
+            // actions: [Icon(Icons.search), SizedBox(width: 12)],
           ),
-          // actions: [Icon(Icons.search), SizedBox(width: 12)],
-        ),
-        body: Center(
-          child: isLoading
-              ? CircularProgressIndicator()
-              : notes.isEmpty
-                  ? Text(
-                      'No Notes',
-                      style: TextStyle(color: Colors.white, fontSize: 24),
-                    )
-                  : buildNotes(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
-          child: Icon(Icons.add),
-          onPressed: () async {
-            await Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => AddEditNotePage()),
-            );
+          body: Center(
+            child: isLoading
+                ? CircularProgressIndicator()
+                : notes.isEmpty
+                    ? Text(
+                        'No Notes',
+                        style: TextStyle(color: Colors.white, fontSize: 24),
+                      )
+                    : buildNotes(),
+          ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.black,
+            child: Icon(Icons.add),
+            onPressed: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => AddEditNotePage()),
+              );
 
-            refreshNote();
-          },
+              refreshNote();
+            },
+          ),
         ),
       );
 
