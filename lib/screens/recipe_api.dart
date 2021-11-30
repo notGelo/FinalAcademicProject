@@ -137,20 +137,83 @@ class _RecipesState extends State<Recipes> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Expanded(
-                                      flex: 8,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              topRight: Radius.circular(20)),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(
-                                              x.image.toString(),
+                                    flex: 8,
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                topRight: Radius.circular(20)),
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                x.image.toString(),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      )),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: FutureBuilder<bool>(
+                                              future: DatabaseHelper.instance
+                                                  .isFavorite(
+                                                      x.label.toString(),
+                                                      x.source.toString()),
+                                              builder: (BuildContext context,
+                                                  AsyncSnapshot<bool>
+                                                      snapshot) {
+                                                if (snapshot.data == true) {
+                                                  myColor = Colors.red;
+                                                } else {
+                                                  myColor = Colors.white;
+                                                }
+                                                return IconButton(
+                                                  // style: ,
+                                                  icon: Icon(
+                                                    Icons.favorite,
+                                                    color: myColor,
+                                                    size: getScreenHeight(
+                                                            context) *
+                                                        0.04,
+                                                  ),
+                                                  // Text(
+                                                  //   'BUTTON MO PO',
+                                                  //   style: TextStyle(color: myColor),
+                                                  // ),
+                                                  onPressed: () async {
+                                                    if (snapshot.data == true) {
+                                                      setState(() {
+                                                        myColor = Colors.white;
+                                                        DatabaseHelper.instance
+                                                            .remove_heart(x
+                                                                .label
+                                                                .toString());
+                                                      });
+                                                    } else {
+                                                      setState(() {
+                                                        myColor = Colors.red;
+                                                      });
+
+                                                      await DatabaseHelper
+                                                          .instance
+                                                          .add(Favorites(
+                                                              url: x.url
+                                                                  .toString(),
+                                                              label: x.label
+                                                                  .toString(),
+                                                              image: x.image
+                                                                  .toString(),
+                                                              source: x.source
+                                                                  .toString()));
+                                                    }
+                                                  },
+                                                );
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   Expanded(
                                     flex: 2,
                                     child: Container(
@@ -196,47 +259,6 @@ class _RecipesState extends State<Recipes> {
                                       ),
                                     ),
                                   ),
-                                  FutureBuilder<bool>(
-                                      future: DatabaseHelper.instance
-                                          .isFavorite(x.label.toString(),
-                                              x.source.toString()),
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot<bool> snapshot) {
-                                        if (snapshot.data == true) {
-                                          myColor = Colors.red;
-                                        } else {
-                                          myColor = Colors.white;
-                                        }
-                                        return TextButton(
-                                          // style: ,
-                                          child: Text(
-                                            'BUTTON MO PO',
-                                            style: TextStyle(color: myColor),
-                                          ),
-                                          onPressed: () async {
-                                            if (snapshot.data == true) {
-                                              setState(() {
-                                                myColor = Colors.white;
-                                                DatabaseHelper.instance
-                                                    .remove_heart(
-                                                        x.label.toString());
-                                              });
-                                            } else {
-                                              setState(() {
-                                                myColor = Colors.red;
-                                              });
-
-                                              await DatabaseHelper.instance.add(
-                                                  Favorites(
-                                                      url: x.url.toString(),
-                                                      label: x.label.toString(),
-                                                      image: x.image.toString(),
-                                                      source:
-                                                          x.source.toString()));
-                                            }
-                                          },
-                                        );
-                                      })
                                 ],
                               ),
                             ),
@@ -399,20 +421,83 @@ class _SearchPageState extends State<SearchPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Expanded(
-                                      flex: 8,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              topRight: Radius.circular(20)),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(
-                                              x.image.toString(),
+                                    flex: 8,
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                topRight: Radius.circular(20)),
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                x.image.toString(),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      )),
+                                        Align(
+                                          alignment: Alignment.topRight,
+                                          child: FutureBuilder<bool>(
+                                              future: DatabaseHelper.instance
+                                                  .isFavorite(
+                                                      x.label.toString(),
+                                                      x.source.toString()),
+                                              builder: (BuildContext context,
+                                                  AsyncSnapshot<bool>
+                                                      snapshot) {
+                                                if (snapshot.data == true) {
+                                                  myColor = Colors.red;
+                                                } else {
+                                                  myColor = Colors.white;
+                                                }
+                                                return IconButton(
+                                                  // style: ,
+                                                  icon: Icon(
+                                                    Icons.favorite,
+                                                    color: myColor,
+                                                    size: getScreenHeight(
+                                                            context) *
+                                                        0.04,
+                                                  ),
+                                                  // Text(
+                                                  //   'BUTTON MO PO',
+                                                  //   style: TextStyle(color: myColor),
+                                                  // ),
+                                                  onPressed: () async {
+                                                    if (snapshot.data == true) {
+                                                      setState(() {
+                                                        myColor = Colors.white;
+                                                        DatabaseHelper.instance
+                                                            .remove_heart(x
+                                                                .label
+                                                                .toString());
+                                                      });
+                                                    } else {
+                                                      setState(() {
+                                                        myColor = Colors.red;
+                                                      });
+
+                                                      await DatabaseHelper
+                                                          .instance
+                                                          .add(Favorites(
+                                                              url: x.url
+                                                                  .toString(),
+                                                              label: x.label
+                                                                  .toString(),
+                                                              image: x.image
+                                                                  .toString(),
+                                                              source: x.source
+                                                                  .toString()));
+                                                    }
+                                                  },
+                                                );
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   Expanded(
                                     flex: 2,
                                     child: Container(
@@ -458,47 +543,47 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                     ),
                                   ),
-                                  FutureBuilder<bool>(
-                                      future: DatabaseHelper.instance
-                                          .isFavorite(x.label.toString(),
-                                              x.source.toString()),
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot<bool> snapshot) {
-                                        if (snapshot.data == true) {
-                                          myColor = Colors.red;
-                                        } else {
-                                          myColor = Colors.white;
-                                        }
-                                        return TextButton(
-                                          // style: ,
-                                          child: Text(
-                                            'BUTTON MO PO',
-                                            style: TextStyle(color: myColor),
-                                          ),
-                                          onPressed: () async {
-                                            if (snapshot.data == true) {
-                                              setState(() {
-                                                myColor = Colors.white;
-                                                DatabaseHelper.instance
-                                                    .remove_heart(
-                                                        x.label.toString());
-                                              });
-                                            } else {
-                                              setState(() {
-                                                myColor = Colors.red;
-                                              });
-
-                                              await DatabaseHelper.instance.add(
-                                                  Favorites(
-                                                      url: x.url.toString(),
-                                                      label: x.label.toString(),
-                                                      image: x.image.toString(),
-                                                      source:
-                                                          x.source.toString()));
-                                            }
-                                          },
-                                        );
-                                      })
+                                  // FutureBuilder<bool>(
+                                  //     future: DatabaseHelper.instance
+                                  //         .isFavorite(x.label.toString(),
+                                  //             x.source.toString()),
+                                  //     builder: (BuildContext context,
+                                  //         AsyncSnapshot<bool> snapshot) {
+                                  //       if (snapshot.data == true) {
+                                  //         myColor = Colors.red;
+                                  //       } else {
+                                  //         myColor = Colors.white;
+                                  //       }
+                                  //       return TextButton(
+                                  //         // style: ,
+                                  //         child: Text(
+                                  //           'BUTTON MO PO',
+                                  //           style: TextStyle(color: myColor),
+                                  //         ),
+                                  //         onPressed: () async {
+                                  //           if (snapshot.data == true) {
+                                  //             setState(() {
+                                  //               myColor = Colors.white;
+                                  //               DatabaseHelper.instance
+                                  //                   .remove_heart(
+                                  //                       x.label.toString());
+                                  //             });
+                                  //           } else {
+                                  //             setState(() {
+                                  //               myColor = Colors.red;
+                                  //             });
+                                  //
+                                  //             await DatabaseHelper.instance.add(
+                                  //                 Favorites(
+                                  //                     url: x.url.toString(),
+                                  //                     label: x.label.toString(),
+                                  //                     image: x.image.toString(),
+                                  //                     source:
+                                  //                         x.source.toString()));
+                                  //           }
+                                  //         },
+                                  //       );
+                                  //     }),
                                 ],
                               ),
                             ),
