@@ -5,7 +5,7 @@ import 'package:grubhie/screens/main_menu_screen.dart';
 import 'package:grubhie/screens/recipe_api.dart';
 import 'package:grubhie/screens/random_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:grubhie/provider/theme_provider.dart';
+import 'package:grubhie/utilities/theme_model.dart';
 import 'package:grubhie/screens/shopping_list.dart';
 
 void main() {
@@ -15,18 +15,13 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => ThemeProvider(),
-        builder: (context, _) {
-          final themeProvider = Provider.of<ThemeProvider>(context);
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => ThemeModel(),
+      child: Consumer(
+        builder: (context, ThemeModel themeNotifier, child) {
           return MaterialApp(
-            themeMode: themeProvider.themeMode,
-            theme: MyThemes.lightTheme,
-            darkTheme: MyThemes.darkTheme,
-            // theme: ThemeData(
-            //   //scaffoldBackgroundColor: Color.fromRGBO(215, 215, 215, 1),
-            //   scaffoldBackgroundColor: Colors.white,
-            // ),
+            theme: themeNotifier.isDark ? ThemeData.dark() : ThemeData.light(),
             home: HomeScreen(),
             routes: {
               '/home': (context) => HomeScreen(),
@@ -38,5 +33,7 @@ class MyApp extends StatelessWidget {
             },
           );
         },
-      );
+      ),
+    );
+  }
 }
