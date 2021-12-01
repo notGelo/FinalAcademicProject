@@ -58,15 +58,36 @@ class _ShoppingListState extends State<ShoppingList> {
               ),
             ),
           ),
-          body: Center(
-            child: isLoading
-                ? CircularProgressIndicator()
-                : notes.isEmpty
-                    ? Text(
-                        'No Notes',
-                        style: TextStyle(color: Colors.white, fontSize: 24),
-                      )
-                    : buildNotes(),
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(themeNotifier.isDark
+                    ? 'assets/images/bg_plain_dm.png'
+                    : 'assets/images/bg_plain.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Center(
+              child: isLoading
+                  ? CircularProgressIndicator()
+                  : notes.isEmpty
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              width: getScreenWidth(context) * 0.6,
+                              image: AssetImage(themeNotifier.isDark
+                                  ? 'assets/images/empty_dm.png'
+                                  : 'assets/images/empty.png'),
+                            ),
+                            SizedBox(
+                              height: getScreenHeight(context) * 0.02,
+                            ),
+                            Text('no shopping lists... try adding some')
+                          ],
+                        )
+                      : buildNotes(),
+            ),
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor:

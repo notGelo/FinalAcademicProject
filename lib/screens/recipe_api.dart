@@ -359,6 +359,7 @@ class _SearchPageState extends State<SearchPage> {
   bool loading = true;
   List<Model> list = <Model>[];
   String? text;
+  bool failed = false;
 
   getApiData(search) async {
     final url =
@@ -373,6 +374,12 @@ class _SearchPageState extends State<SearchPage> {
         label: e['recipe']['label'],
       );
       setState(() {
+        if (response.body.isEmpty) {
+          failed = true;
+        }
+        if (failed == true) {
+          loading = false;
+        }
         loading = false;
         list.add(model);
       });
@@ -389,6 +396,122 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ThemeModel themeNotifier, child) {
+      //is empty
+      //loading
+      if (list.isEmpty) {
+        return SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              backgroundColor: themeNotifier.isDark
+                  ? '424242'.toColor()
+                  : 'ea9052'.toColor(),
+              elevation: 0,
+              titleTextStyle:
+                  TextStyle(fontFamily: 'patrickHand', fontSize: 25),
+              title: Text('Search Recipes'),
+              flexibleSpace: Container(
+                alignment: Alignment(1, 0),
+                child: IconButton(
+                  onPressed: () {
+                    themeNotifier.isDark
+                        ? themeNotifier.isDark = false
+                        : themeNotifier.isDark = true;
+                  },
+                  icon: Icon(
+                    themeNotifier.isDark
+                        ? Icons.wb_sunny
+                        : Icons.nightlight_round,
+                    color: themeNotifier.isDark ? Colors.yellow : Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            body: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(themeNotifier.isDark
+                      ? 'assets/images/bg_plain_dm.png'
+                      : 'assets/images/bg_plain.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              padding: EdgeInsets.only(
+                  top: getScreenWidth(context) * 0.05,
+                  right: getScreenWidth(context) * 0.03,
+                  bottom: getScreenWidth(context) * 0,
+                  left: getScreenWidth(context) * 0.03),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TextField(
+                      onChanged: (v) {
+                        text = v;
+                      },
+                      decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SearchPage(search: text)));
+                          },
+                          icon: Icon(
+                            Icons.search,
+                            color: themeNotifier.isDark
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
+                        hintText: "Search For Recipes..",
+                        hintStyle: TextStyle(
+                          color: themeNotifier.isDark
+                              ? Colors.white
+                              : Colors.black,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        fillColor:
+                            themeNotifier.isDark ? Colors.grey : Colors.white,
+                        filled: true,
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: getScreenHeight(context) * 0.25,
+                        ),
+                        Image(
+                          width: getScreenWidth(context) * 0.6,
+                          image: AssetImage(themeNotifier.isDark
+                              ? 'assets/images/empty_dm.png'
+                              : 'assets/images/empty.png'),
+                        ),
+                        SizedBox(
+                          height: getScreenHeight(context) * 0.02,
+                        ),
+                        Text('no recipes searched... try again'),
+                        SizedBox(
+                          height: getScreenHeight(context) * 0.33,
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      }
       return loading
           ? Loading()
           : SafeArea(
