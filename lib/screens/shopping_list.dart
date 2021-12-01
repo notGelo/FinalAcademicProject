@@ -37,8 +37,7 @@ class _ShoppingListState extends State<ShoppingList> {
         child: Scaffold(
           appBar: AppBar(
             elevation: 0,
-            title: Text('My Shopping List'),
-            backgroundColor: Colors.white,
+            title: Text('Search Recipes'),
           ),
           body: Center(
             child: isLoading

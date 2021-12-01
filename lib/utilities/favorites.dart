@@ -85,6 +85,7 @@ class DatabaseHelper {
     return await db.delete('favorites', where: 'id = ?', whereArgs: [id]);
   }
 
+  // ignore: non_constant_identifier_names
   Future<int> remove_heart(String label) async {
     Database db = await instance.database;
     return await db.delete('favorites', where: 'label = ?', whereArgs: [label]);

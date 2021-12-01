@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/theme_model.dart';
 import 'package:provider/provider.dart';
 
@@ -19,13 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(themeNotifier.isDark
-                    ? 'assets/images/bg_home_final.png'
-                    : 'assets/images/bg_plain.png'),
+                    ? 'assets/images/bg_home_final_dm.png'
+                    : 'assets/images/bg_home_final.png'),
                 fit: BoxFit.cover,
               ),
             ),
             child: Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
                   alignment: Alignment(1.0, 1.0),
@@ -53,7 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, '/main');
                       },
                       child: Image(
-                        image: AssetImage('assets/images/grubhie_logo.gif'),
+                        image: AssetImage(themeNotifier.isDark
+                            ? 'assets/images/grubhie_logo_dm.gif'
+                            : 'assets/images/grubhie_logo.gif'),
                       ),
                     ),
                   ),

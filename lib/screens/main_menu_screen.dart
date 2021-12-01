@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
+import 'package:grubhie/utilities/theme_model.dart';
+import 'package:provider/provider.dart';
 import 'dart:math';
 
 class MainMenu extends StatefulWidget {
@@ -8,110 +10,106 @@ class MainMenu extends StatefulWidget {
   _MainMenuState createState() => _MainMenuState();
 }
 
+double marginTop = 0.01;
+double marginSides = 0.05;
+
 class _MainMenuState extends State<MainMenu> {
   @override
-  double marginTop = 0.01;
-  double marginSides = 0.05;
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        // key: kscaffoldKey,
-        // appBar: new AppBar(
-        //   backgroundColor: Colors.transparent,
-        //   leading: IconButton(
-        //     icon: Icon(FontAwesomeIcons.hamburger),
-        //     color: Colors.pink,
-        //     onPressed: () {
-        //       kscaffoldKey.currentState?.openDrawer();
-        //     },
-        //   ),
-        // ),
-        drawer: NavBar(),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/bg_plain.png'),
-              fit: BoxFit.cover,
+    return Consumer(builder: (context, ThemeModel themeNotifier, child) {
+      return SafeArea(
+        child: Scaffold(
+          drawer: NavBar(),
+          body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(themeNotifier.isDark
+                    ? 'assets/images/bg_plain_dm.png'
+                    : 'assets/images/bg_plain.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: ListView(
+              children: <Widget>[
+                Container(
+                  height: min(widthOfScreen(context, 0.4),
+                      heightOfScreen(context, 0.4)),
+                  margin: new EdgeInsets.symmetric(
+                      vertical: widthOfScreen(context, 0.05)),
+                  child: Image(
+                    image: AssetImage(themeNotifier.isDark
+                        ? 'assets/images/grubhie_logo_dm.gif'
+                        : 'assets/images/grubhie_logo.gif'),
+                  ),
+                ),
+                ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/recipes');
+                      },
+                      child: kcustomWidget(
+                          inputText: 'Search Recipes',
+                          col: 'ea9052'.toColor(),
+                          inputMarginSides: widthOfScreen(context, marginSides),
+                          inputMarginTop: widthOfScreen(context, marginTop),
+                          height: widthOfScreen(context, 0.3),
+                          picSide: 'right',
+                          iconImage: 'assets/images/food_1.png',
+                          radius: 30.0),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/favorites');
+                      },
+                      child: kcustomWidget(
+                          inputText: 'My Favorites',
+                          col: 'e84060'.toColor(),
+                          inputMarginSides: widthOfScreen(context, marginSides),
+                          inputMarginTop: widthOfScreen(context, marginTop),
+                          height: widthOfScreen(context, 0.3),
+                          picSide: 'left',
+                          iconImage: 'assets/images/food_2.png',
+                          radius: 30.0),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/shoplist');
+                      },
+                      child: kcustomWidget(
+                          inputText: 'Shopping List',
+                          col: '77b255'.toColor(),
+                          inputMarginSides: widthOfScreen(context, marginSides),
+                          inputMarginTop: widthOfScreen(context, marginTop),
+                          height: widthOfScreen(context, 0.3),
+                          picSide: 'right',
+                          iconImage: 'assets/images/food_3.png',
+                          radius: 30.0),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/random');
+                      },
+                      child: kcustomWidget(
+                          inputText: 'What to cook?',
+                          col: '6840e8'.toColor(),
+                          inputMarginSides: widthOfScreen(context, marginSides),
+                          inputMarginTop: widthOfScreen(context, marginTop),
+                          height: widthOfScreen(context, 0.3),
+                          picSide: 'left',
+                          iconImage: 'assets/images/food_4.png',
+                          radius: 30.0),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          child: ListView(
-            children: <Widget>[
-              Container(
-                height: min(
-                    widthOfScreen(context, 0.4), heightOfScreen(context, 0.4)),
-                margin: new EdgeInsets.symmetric(
-                    vertical: widthOfScreen(context, 0.05)),
-                child: Image(
-                  image: AssetImage('assets/images/grubhie_logo.gif'),
-                ),
-              ),
-              ListView(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/recipes');
-                    },
-                    child: kcustomWidget(
-                        inputText: 'Search Recipes',
-                        col: 'ea9052'.toColor(),
-                        inputMarginSides: widthOfScreen(context, marginSides),
-                        inputMarginTop: widthOfScreen(context, marginTop),
-                        height: widthOfScreen(context, 0.3),
-                        picSide: 'right',
-                        iconImage: 'assets/images/food_1.png',
-                        radius: 30.0),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/favorites');
-                    },
-                    child: kcustomWidget(
-                        inputText: 'My Favorites',
-                        col: 'e84060'.toColor(),
-                        inputMarginSides: widthOfScreen(context, marginSides),
-                        inputMarginTop: widthOfScreen(context, marginTop),
-                        height: widthOfScreen(context, 0.3),
-                        picSide: 'left',
-                        iconImage: 'assets/images/food_2.png',
-                        radius: 30.0),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/shoplist');
-                    },
-                    child: kcustomWidget(
-                        inputText: 'Shopping List',
-                        col: '77b255'.toColor(),
-                        inputMarginSides: widthOfScreen(context, marginSides),
-                        inputMarginTop: widthOfScreen(context, marginTop),
-                        height: widthOfScreen(context, 0.3),
-                        picSide: 'right',
-                        iconImage: 'assets/images/food_3.png',
-                        radius: 30.0),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/random');
-                    },
-                    child: kcustomWidget(
-                        inputText: 'What to cook?',
-                        col: '6840e8'.toColor(),
-                        inputMarginSides: widthOfScreen(context, marginSides),
-                        inputMarginTop: widthOfScreen(context, marginTop),
-                        height: widthOfScreen(context, 0.3),
-                        picSide: 'left',
-                        iconImage: 'assets/images/food_4.png',
-                        radius: 30.0),
-                  ),
-                ],
-              ),
-            ],
-          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 

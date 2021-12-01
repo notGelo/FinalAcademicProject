@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-//SCAFFOLD KEY
-var kscaffoldKey = GlobalKey<ScaffoldState>();
-
 //GET SCREEN HEIGHT AND WIDTH
 double getScreenWidth(BuildContext context) {
   return MediaQuery.of(context).size.width;
@@ -21,6 +18,7 @@ double heightOfScreen(BuildContext context, double height) {
 }
 
 //random color generator
+// ignore: non_constant_identifier_names
 int my_color = 0;
 Color randomColor() {
   my_color++;
