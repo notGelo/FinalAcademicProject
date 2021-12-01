@@ -21,6 +21,8 @@ class _MainMenuState extends State<MainMenu> {
         child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
+            iconTheme: IconThemeData(
+                color: themeNotifier.isDark ? Colors.white : Colors.black),
             backgroundColor: Colors.transparent,
             elevation: 0,
             flexibleSpace: Container(
@@ -35,7 +37,8 @@ class _MainMenuState extends State<MainMenu> {
                   themeNotifier.isDark
                       ? Icons.wb_sunny
                       : Icons.nightlight_round,
-                  color: themeNotifier.isDark ? Colors.yellow : Colors.black,
+                  color:
+                      themeNotifier.isDark ? Colors.yellow : Colors.yellow[600],
                 ),
               ),
             ),
@@ -54,8 +57,8 @@ class _MainMenuState extends State<MainMenu> {
                 Container(
                   height: min(widthOfScreen(context, 0.4),
                       heightOfScreen(context, 0.4)),
-                  margin: new EdgeInsets.symmetric(
-                      vertical: widthOfScreen(context, 0.05)),
+                  margin:
+                      new EdgeInsets.only(bottom: widthOfScreen(context, 0.03)),
                   child: Image(
                     image: AssetImage(themeNotifier.isDark
                         ? 'assets/images/grubhie_logo_dm.gif'
@@ -78,7 +81,8 @@ class _MainMenuState extends State<MainMenu> {
                           height: widthOfScreen(context, 0.3),
                           picSide: 'right',
                           iconImage: 'assets/images/food_1.png',
-                          radius: 30.0),
+                          radius: 30.0,
+                          fontFam: 'font4'),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -92,7 +96,8 @@ class _MainMenuState extends State<MainMenu> {
                           height: widthOfScreen(context, 0.3),
                           picSide: 'left',
                           iconImage: 'assets/images/food_2.png',
-                          radius: 30.0),
+                          radius: 30.0,
+                          fontFam: 'font4'),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -106,21 +111,23 @@ class _MainMenuState extends State<MainMenu> {
                           height: widthOfScreen(context, 0.3),
                           picSide: 'right',
                           iconImage: 'assets/images/food_3.png',
-                          radius: 30.0),
+                          radius: 30.0,
+                          fontFam: 'font4'),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, '/random');
                       },
                       child: kcustomWidget(
-                          inputText: 'What to cook?',
+                          inputText: 'What To Cook?',
                           col: '6840e8'.toColor(),
                           inputMarginSides: widthOfScreen(context, marginSides),
                           inputMarginTop: widthOfScreen(context, marginTop),
                           height: widthOfScreen(context, 0.3),
                           picSide: 'left',
                           iconImage: 'assets/images/food_4.png',
-                          radius: 30.0),
+                          radius: 30.0,
+                          fontFam: 'font4'),
                     ),
                   ],
                 ),
@@ -144,7 +151,8 @@ Container kcustomWidget(
     Alignment alignText = Alignment.center,
     String picSide = '',
     String iconImage = '',
-    double radius = 0}) {
+    double radius = 0,
+    String fontFam = ''}) {
   if (picSide == 'right') {
     return Container(
       margin: EdgeInsets.symmetric(
@@ -169,7 +177,8 @@ Container kcustomWidget(
                 inputText,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: height / 4,
+                  fontSize: height / 4.5,
+                  fontFamily: fontFam,
                   shadows: [
                     Shadow(
                       color: Colors.black,
@@ -214,7 +223,8 @@ Container kcustomWidget(
                 inputText,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: height / 4,
+                  fontSize: height / 4.5,
+                  fontFamily: fontFam,
                   shadows: [
                     Shadow(
                       color: Colors.black,

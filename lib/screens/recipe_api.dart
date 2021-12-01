@@ -55,10 +55,13 @@ class _RecipesState extends State<Recipes> {
           : SafeArea(
               child: Scaffold(
                 appBar: AppBar(
+                  centerTitle: true,
                   backgroundColor: themeNotifier.isDark
                       ? '424242'.toColor()
                       : 'ea9052'.toColor(),
                   elevation: 0,
+                  titleTextStyle:
+                      TextStyle(fontFamily: 'patrickHand', fontSize: 25),
                   title: Text('Search Recipes'),
                   flexibleSpace: Container(
                     alignment: Alignment(1, 0),
@@ -145,7 +148,7 @@ class _RecipesState extends State<Recipes> {
                           primary: true,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: (16 / 20),
+                                  childAspectRatio: (16 / 25),
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 18,
                                   mainAxisSpacing: 18),
@@ -215,9 +218,9 @@ class _RecipesState extends State<Recipes> {
                                                     icon: DecoratedIcon(
                                                       Icons.favorite,
                                                       color: myColor,
-                                                      size: getScreenHeight(
+                                                      size: getScreenWidth(
                                                               context) *
-                                                          0.04,
+                                                          0.05,
                                                       shadows: [
                                                         BoxShadow(
                                                           blurRadius: 13.0,
@@ -263,18 +266,21 @@ class _RecipesState extends State<Recipes> {
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 2,
+                                      flex: 4,
                                       child: Container(
                                         padding: EdgeInsets.all(3),
                                         color: col,
                                         child: Center(
                                           child: Text(
-                                            x.label.toString().toUpperCase(),
+                                            x.label.toString(),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontSize: 15,
+                                              fontSize:
+                                                  getScreenWidth(context) *
+                                                      0.045,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
+                                              fontFamily: 'font2',
                                               shadows: [
                                                 Shadow(
                                                   color: Colors.black,
@@ -300,7 +306,9 @@ class _RecipesState extends State<Recipes> {
                                           child: Text(
                                             "from " + x.source.toString(),
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize:
+                                                  getScreenWidth(context) *
+                                                      0.028,
                                               color: Colors.white,
                                             ),
                                           ),
@@ -386,10 +394,13 @@ class _SearchPageState extends State<SearchPage> {
           : SafeArea(
               child: Scaffold(
                 appBar: AppBar(
+                  centerTitle: true,
                   backgroundColor: themeNotifier.isDark
                       ? '424242'.toColor()
                       : 'ea9052'.toColor(),
                   elevation: 0,
+                  titleTextStyle:
+                      TextStyle(fontFamily: 'patrickHand', fontSize: 25),
                   title: Text('Search Recipes'),
                   flexibleSpace: Container(
                     alignment: Alignment(1, 0),
@@ -476,7 +487,7 @@ class _SearchPageState extends State<SearchPage> {
                           primary: true,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio: (16 / 20),
+                                  childAspectRatio: (16 / 25),
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 18,
                                   mainAxisSpacing: 18),
@@ -501,8 +512,7 @@ class _SearchPageState extends State<SearchPage> {
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.black.withOpacity(0.7),
-                                      offset: Offset(
-                                          0, 1.3), // changes position of shadow
+                                      offset: Offset(0, 1.3),
                                     ),
                                   ],
                                 ),
@@ -547,9 +557,9 @@ class _SearchPageState extends State<SearchPage> {
                                                     icon: DecoratedIcon(
                                                       Icons.favorite,
                                                       color: myColor,
-                                                      size: getScreenHeight(
+                                                      size: getScreenWidth(
                                                               context) *
-                                                          0.04,
+                                                          0.05,
                                                       shadows: [
                                                         BoxShadow(
                                                           blurRadius: 13.0,
@@ -595,18 +605,21 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 2,
+                                      flex: 4,
                                       child: Container(
                                         padding: EdgeInsets.all(3),
                                         color: col,
                                         child: Center(
                                           child: Text(
-                                            x.label.toString().toUpperCase(),
+                                            x.label.toString(),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontSize: 15,
+                                              fontSize:
+                                                  getScreenWidth(context) *
+                                                      0.045,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
+                                              fontFamily: 'font2',
                                               shadows: [
                                                 Shadow(
                                                   color: Colors.black,
@@ -632,7 +645,9 @@ class _SearchPageState extends State<SearchPage> {
                                           child: Text(
                                             "from " + x.source.toString(),
                                             style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize:
+                                                  getScreenWidth(context) *
+                                                      0.028,
                                               color: Colors.white,
                                             ),
                                           ),

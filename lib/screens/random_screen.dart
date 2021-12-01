@@ -71,26 +71,14 @@ class _RandomRecipeState extends State<RandomRecipe> {
               child: Scaffold(
                 extendBodyBehindAppBar: true,
                 appBar: AppBar(
+                  centerTitle: true | true,
+                  titleTextStyle: TextStyle(
+                    fontFamily: 'patrickHand',
+                    fontSize: 25,
+                  ),
+                  title: Text('What To Cook?'),
                   backgroundColor: Color(0x44000000),
                   elevation: 0,
-                  title: Text('What to cook?'),
-                  flexibleSpace: Container(
-                    alignment: Alignment(1, 0),
-                    child: IconButton(
-                      onPressed: () {
-                        themeNotifier.isDark
-                            ? themeNotifier.isDark = false
-                            : themeNotifier.isDark = true;
-                      },
-                      icon: Icon(
-                        themeNotifier.isDark
-                            ? Icons.wb_sunny
-                            : Icons.nightlight_round,
-                        color:
-                            themeNotifier.isDark ? Colors.yellow : Colors.white,
-                      ),
-                    ),
-                  ),
                 ),
                 body: Container(
                   height: getScreenHeight(context),
@@ -136,9 +124,10 @@ class _RandomRecipeState extends State<RandomRecipe> {
                                 ),
                                 child: Text(list[0].label.toString(),
                                     style: TextStyle(
-                                      color: 'e84060'.toColor(),
-                                      fontSize: getScreenWidth(context) * 0.06,
+                                      color: randomColor(),
+                                      fontSize: getScreenWidth(context) * 0.1,
                                       fontWeight: FontWeight.w700,
+                                      fontFamily: 'font3',
                                       shadows: [
                                         Shadow(
                                           blurRadius: 2,

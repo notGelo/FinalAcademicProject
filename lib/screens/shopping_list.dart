@@ -35,6 +35,8 @@ class _ShoppingListState extends State<ShoppingList> {
       return SafeArea(
         child: Scaffold(
           appBar: AppBar(
+            centerTitle: true,
+            titleTextStyle: TextStyle(fontFamily: 'patrickHand', fontSize: 25),
             backgroundColor:
                 themeNotifier.isDark ? '424242'.toColor() : '77b255'.toColor(),
             elevation: 0,

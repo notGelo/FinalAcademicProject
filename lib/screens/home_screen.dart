@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:grubhie/utilities/constants.dart';
 import 'package:grubhie/utilities/theme_model.dart';
 import 'package:provider/provider.dart';
 
@@ -37,13 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       themeNotifier.isDark
                           ? Icons.wb_sunny
                           : Icons.nightlight_round,
-                      color:
-                          themeNotifier.isDark ? Colors.yellow : Colors.black,
+                      color: themeNotifier.isDark
+                          ? Colors.yellow
+                          : Colors.yellow[600],
                     ),
                   ),
                 ),
                 Expanded(
-                  flex: 9,
                   child: Align(
                     alignment: Alignment.center,
                     child: TextButton(
@@ -58,6 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: getScreenHeight(context) * 0.1,
+                )
                 // Expanded(
                 //   flex: 6,
                 //   child: Container(),

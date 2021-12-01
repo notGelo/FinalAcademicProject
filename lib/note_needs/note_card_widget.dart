@@ -39,17 +39,25 @@ class NoteCardWidget extends StatelessWidget {
             Text(
               time,
               style: TextStyle(
-                  color: Colors.white70,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 11),
+                  fontSize: getScreenWidth(context) * 0.03),
             ),
             SizedBox(height: 4),
             Text(
               note.title,
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
+                color: 'fafafa'.toColor(),
+                fontSize: getScreenWidth(context) * 0.05,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'patrickHand',
+                shadows: [
+                  Shadow(
+                    blurRadius: 8,
+                    color: Colors.black,
+                    offset: Offset(0, 0),
+                  ),
+                ],
               ),
             ),
           ],

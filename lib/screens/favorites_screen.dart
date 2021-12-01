@@ -20,6 +20,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       return SafeArea(
         child: Scaffold(
           appBar: AppBar(
+            centerTitle: true,
+            titleTextStyle: TextStyle(fontFamily: 'patrickHand', fontSize: 25),
             backgroundColor:
                 themeNotifier.isDark ? '424242'.toColor() : 'e84060'.toColor(),
             elevation: 0,
@@ -61,7 +63,22 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     return Center(child: Text('Loading...'));
                   }
                   return snapshot.data!.isEmpty
-                      ? Center(child: Text('No Favorites PO.'))
+                      ? Center(
+                          child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              width: getScreenWidth(context) * 0.6,
+                              image: AssetImage(themeNotifier.isDark
+                                  ? 'assets/images/empty_dm.png'
+                                  : 'assets/images/empty.png'),
+                            ),
+                            SizedBox(
+                              height: getScreenHeight(context) * 0.02,
+                            ),
+                            Text('no favorites... try adding some')
+                          ],
+                        ))
                       : ListView(
                           children: snapshot.data!.map((favorite) {
                             return Container(
@@ -89,9 +106,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                               Colors.white.withOpacity(0),
                                             ]
                                           : [
-                                              Colors.black.withOpacity(0.6),
+                                              Colors.black.withOpacity(0.5),
                                               Colors.black.withOpacity(0),
-                                              Colors.black.withOpacity(0.3),
+                                              Colors.black.withOpacity(0.2),
                                             ],
                                     ),
                                   ),
@@ -111,6 +128,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                               child: Text(
                                                 favorite.label,
                                                 style: (TextStyle(
+                                                    fontFamily: 'font2',
                                                     shadows: [
                                                       Shadow(
                                                         blurRadius:
@@ -202,7 +220,7 @@ void _showDialog(BuildContext context, String text) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: new Text("Alert!"),
+        title: new Text(":("),
         content: new Text('You removed ' + text + ' from Favorites.'),
         actions: <Widget>[
           new TextButton(
