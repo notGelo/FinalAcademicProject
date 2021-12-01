@@ -69,10 +69,9 @@ class _RandomRecipeState extends State<RandomRecipe> {
           ? Loading()
           : SafeArea(
               child: Scaffold(
+                extendBodyBehindAppBar: true,
                 appBar: AppBar(
-                  backgroundColor: themeNotifier.isDark
-                      ? '424242'.toColor()
-                      : '6840e8'.toColor(),
+                  backgroundColor: Color(0x44000000),
                   elevation: 0,
                   title: Text('What to cook?'),
                   flexibleSpace: Container(

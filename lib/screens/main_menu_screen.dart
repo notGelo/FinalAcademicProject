@@ -19,7 +19,27 @@ class _MainMenuState extends State<MainMenu> {
     return Consumer(builder: (context, ThemeModel themeNotifier, child) {
       return SafeArea(
         child: Scaffold(
-          drawer: NavBar(),
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            flexibleSpace: Container(
+              alignment: Alignment(1, 0),
+              child: IconButton(
+                onPressed: () {
+                  themeNotifier.isDark
+                      ? themeNotifier.isDark = false
+                      : themeNotifier.isDark = true;
+                },
+                icon: Icon(
+                  themeNotifier.isDark
+                      ? Icons.wb_sunny
+                      : Icons.nightlight_round,
+                  color: themeNotifier.isDark ? Colors.yellow : Colors.black,
+                ),
+              ),
+            ),
+          ),
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
