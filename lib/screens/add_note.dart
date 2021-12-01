@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:grubhie/note_needs/note_database.dart';
 import 'package:grubhie/utilities/note_models.dart';
 import 'package:grubhie/note_needs/note_form_widget.dart';
+import 'package:grubhie/utilities/theme_model.dart';
+import 'package:provider/provider.dart';
+import 'package:grubhie/utilities/constants.dart';
 
 class AddEditNotePage extends StatefulWidget {
   final Note? note;
@@ -32,9 +35,14 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) {
+    return Consumer(builder: (context, ThemeModel themeNotifier, child) {
+      return Scaffold(
         appBar: AppBar(
           actions: [buildButton()],
+          backgroundColor:
+              themeNotifier.isDark ? '424242'.toColor() : '77b255'.toColor(),
+          elevation: 0,
         ),
         body: Form(
           key: _formKey,
@@ -52,6 +60,8 @@ class _AddEditNotePageState extends State<AddEditNotePage> {
           ),
         ),
       );
+    });
+  }
 
   Widget buildButton() {
     final isFormValid = title.isNotEmpty && description.isNotEmpty;

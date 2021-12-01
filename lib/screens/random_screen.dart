@@ -11,6 +11,9 @@ import 'package:flutter/cupertino.dart';
 import 'loading_screen.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
+import 'package:grubhie/utilities/theme_model.dart';
+import 'package:provider/provider.dart';
+
 class RandomRecipe extends StatefulWidget {
   @override
   _RandomRecipeState createState() => _RandomRecipeState();
@@ -61,101 +64,130 @@ class _RandomRecipeState extends State<RandomRecipe> {
 
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? Loading()
-        : Scaffold(
-            appBar: AppBar(
-              elevation: 0,
-              title: Text('What to cook?'),
-            ),
-            body: Container(
-              height: getScreenHeight(context),
-              width: getScreenWidth(context),
-              padding: EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 10,
-              ),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(list[0].image.toString()),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    // Container(
-                    //   margin: EdgeInsets.all(20),
-                    //   child: Text('TODAY, LETS FAKING COOK SUMM',
-                    //       style: TextStyle(fontSize: 20),
-                    //       textAlign: TextAlign.center),
-                    // ),
-                    SizedBox(
-                      height: getScreenHeight(context) * 0.8,
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                          right: getScreenWidth(context) * 0.05,
-                          left: getScreenWidth(context) * 0.05),
-                      decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.8),
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: getScreenHeight(context) * 0.014,
-                            decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    bottomRight: Radius.circular(20))),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                              vertical: getScreenHeight(context) * 0.05,
-                              horizontal: getScreenHeight(context) * 0.03,
-                            ),
-                            child: Text(list[0].label.toString(),
-                                style: TextStyle(
-                                  color: 'e84060'.toColor(),
-                                  fontSize: getScreenWidth(context) * 0.06,
-                                  fontWeight: FontWeight.w700,
-                                  shadows: [
-                                    Shadow(
-                                      blurRadius: 2,
-                                      color: Colors.black.withOpacity(0.3),
-                                    )
-                                  ],
-                                ),
-                                textAlign: TextAlign.center),
-                          ),
-                          MarkdownBody(
-                              styleSheet: MarkdownStyleSheet(
-                                  textAlign: WrapAlignment.spaceBetween),
-                              data: description),
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: getScreenWidth(context) * 0.03),
-                            child: TextButton.icon(
-                                icon: Icon(Icons.arrow_right_alt_rounded),
-                                label: Text('VIEW FULL RECIPE'),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => WebPage(
-                                                url: list[0].url.toString(),
-                                              )));
-                                }),
-                          )
-                        ],
+    return Consumer(builder: (context, ThemeModel themeNotifier, child) {
+      return loading
+          ? Loading()
+          : SafeArea(
+              child: Scaffold(
+                appBar: AppBar(
+                  backgroundColor: themeNotifier.isDark
+                      ? '424242'.toColor()
+                      : '6840e8'.toColor(),
+                  elevation: 0,
+                  title: Text('What to cook?'),
+                  flexibleSpace: Container(
+                    alignment: Alignment(1, 0),
+                    child: IconButton(
+                      onPressed: () {
+                        themeNotifier.isDark
+                            ? themeNotifier.isDark = false
+                            : themeNotifier.isDark = true;
+                      },
+                      icon: Icon(
+                        themeNotifier.isDark
+                            ? Icons.wb_sunny
+                            : Icons.nightlight_round,
+                        color:
+                            themeNotifier.isDark ? Colors.yellow : Colors.white,
                       ),
                     ),
-                  ],
+                  ),
+                ),
+                body: Container(
+                  height: getScreenHeight(context),
+                  width: getScreenWidth(context),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(list[0].image.toString()),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: getScreenHeight(context) * 0.8,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                              right: getScreenWidth(context) * 0.05,
+                              left: getScreenWidth(context) * 0.05),
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.8),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: getScreenHeight(context) * 0.014,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(20),
+                                        bottomRight: Radius.circular(20))),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                  vertical: getScreenHeight(context) * 0.05,
+                                  horizontal: getScreenHeight(context) * 0.03,
+                                ),
+                                child: Text(list[0].label.toString(),
+                                    style: TextStyle(
+                                      color: 'e84060'.toColor(),
+                                      fontSize: getScreenWidth(context) * 0.06,
+                                      fontWeight: FontWeight.w700,
+                                      shadows: [
+                                        Shadow(
+                                          blurRadius: 2,
+                                          color: Colors.black.withOpacity(0.3),
+                                        )
+                                      ],
+                                    ),
+                                    textAlign: TextAlign.center),
+                              ),
+                              MarkdownBody(
+                                  styleSheet: MarkdownStyleSheet(
+                                    h1: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    h2: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    p: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                    textAlign: WrapAlignment.spaceBetween,
+                                  ),
+                                  data: description),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: getScreenWidth(context) * 0.03),
+                                child: TextButton.icon(
+                                    icon: Icon(Icons.arrow_right_alt_rounded),
+                                    label: Text('VIEW FULL RECIPE'),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => WebPage(
+                                                    url: list[0].url.toString(),
+                                                  )));
+                                    }),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          );
+            );
+    });
   }
 }
 

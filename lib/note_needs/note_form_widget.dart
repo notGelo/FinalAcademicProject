@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grubhie/utilities/theme_model.dart';
+import 'package:provider/provider.dart';
 
 class NoteFormWidget extends StatelessWidget {
   final bool? isImportant;
@@ -29,23 +31,6 @@ class NoteFormWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Row(
-              //   children: [
-              //     Switch(
-              //       value: isImportant ?? false,
-              //       onChanged: onChangedImportant,
-              //     ),
-              //     Expanded(
-              //       child: Slider(
-              //         value: (number ?? 0).toDouble(),
-              //         min: 0,
-              //         max: 5,
-              //         divisions: 5,
-              //         onChanged: (number) => onChangedNumber(number.toInt()),
-              //       ),
-              //     )
-              //   ],
-              // ),
               buildTitle(),
               SizedBox(height: 8),
               buildDescription(),
@@ -55,36 +40,48 @@ class NoteFormWidget extends StatelessWidget {
         ),
       );
 
-  Widget buildTitle() => TextFormField(
+  Widget buildTitle() {
+    return Consumer(builder: (context, ThemeModel themeNotifier, child) {
+      return TextFormField(
         maxLines: 1,
         initialValue: title,
         style: TextStyle(
-          color: Colors.black,
+          color: themeNotifier.isDark ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
           fontSize: 24,
         ),
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Title',
-          hintStyle: TextStyle(color: Colors.black),
+          hintStyle: TextStyle(
+              color: themeNotifier.isDark ? Colors.white : Colors.black),
         ),
         validator: (title) =>
             title != null && title.isEmpty ? 'The title cannot be empty' : null,
         onChanged: onChangedTitle,
       );
+    });
+  }
 
-  Widget buildDescription() => TextFormField(
+  Widget buildDescription() {
+    return Consumer(builder: (context, ThemeModel themeNotifier, child) {
+      return TextFormField(
         maxLines: 5,
         initialValue: description,
-        style: TextStyle(color: Colors.black, fontSize: 18),
+        style: TextStyle(
+            color: themeNotifier.isDark ? Colors.white : Colors.black,
+            fontSize: 18),
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Type something...',
-          hintStyle: TextStyle(color: Colors.black),
+          hintStyle: TextStyle(
+              color: themeNotifier.isDark ? Colors.white : Colors.black),
         ),
         validator: (title) => title != null && title.isEmpty
             ? 'The description cannot be empty'
             : null,
         onChanged: onChangedDescription,
       );
+    });
+  }
 }
