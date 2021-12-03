@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grubhie/utilities/navBar.dart';
 import 'package:grubhie/utilities/constants.dart';
 import 'package:grubhie/utilities/theme_model.dart';
 import 'package:provider/provider.dart';
