@@ -99,7 +99,5 @@ class DatabaseHelper {
         [label, source]);
 
     return maps.isNotEmpty;
-    //return true if may laman
-    //return false kapag wala
   }
 }

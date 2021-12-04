@@ -26,7 +26,7 @@ class _RandomRecipeState extends State<RandomRecipe> {
   String? text;
   final headers = {
     "x-rapidapi-host": "yummly2.p.rapidapi.com",
-    "x-rapidapi-key": "6f1631ab05msha6e80d8960887e3p1f86e2jsn8bd9de764450"
+    "x-rapidapi-key": "c53440a60dmsh3573e7631ad8008p1f4722jsn8717ab441984"
   };
   final url =
       'https://yummly2.p.rapidapi.com/feeds/list?limit=100&start=0&tag=list.recipe.popular';
