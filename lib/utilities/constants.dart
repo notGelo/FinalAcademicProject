@@ -18,7 +18,6 @@ double heightOfScreen(BuildContext context, double height) {
 }
 
 //random color generator
-// ignore: non_constant_identifier_names
 int my_color = 0;
 Color randomColor() {
   my_color++;
@@ -34,7 +33,7 @@ Color randomColor() {
   return '6840e8'.toColor();
 }
 
-//hexColorShemene
+//hexColorConverter
 extension ColorExtension on String {
   toColor() {
     var hexColor = this.replaceAll("#", "");
@@ -46,22 +45,3 @@ extension ColorExtension on String {
     }
   }
 }
-
-//DECORATIONS
-const kTextFieldInputDecoration = InputDecoration(
-  filled: true,
-  fillColor: Color.fromRGBO(230, 230, 230, 1),
-  hintStyle: TextStyle(
-    color: Colors.grey,
-  ),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(
-      Radius.circular(30.0),
-    ),
-    borderSide: BorderSide.none,
-  ),
-);
-
-//CUSTOM WIDGETS
-
-//THEME 1
