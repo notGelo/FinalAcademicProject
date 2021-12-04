@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: Consumer(
         builder: (context, ThemeModel themeNotifier, child) {
           return MaterialApp(
-            debugShowCheckedModeBanner: ((false | true) && (false)) | false,
+            debugShowCheckedModeBanner: false,
             theme: themeNotifier.isDark ? ThemeData.dark() : ThemeData.light(),
             home: HomeScreen(),
             routes: {
