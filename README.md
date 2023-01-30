@@ -3,7 +3,9 @@
 ## App Description
 
 As technology and computers have evolved, so has the world around us. From navigating unfamiliar cities to identifying exotic plants, humans have used their ingenuity to create not just functional but visually stunning applications. So why should kitchen problems be any different? Introducing Grubhie, your all-in-one kitchen helper.
+
 Grubhie is a revolutionary recipe formulation app that allows you to discover delicious meals based on ingredients you already have, preferred cuisine styles, or desired dish types. With Grubhie, you can save your favorite recipes and never waste time searching for them again. The app also has a built-in randomization system that presents an array of popular and mouth-watering dishes from all over the world, inspiring you to create your own signature dishes. Additionally, Grubhie includes a shopping list function, helping you budget and plan your next grocery trip.
+
 With Grubhie, mastering the kitchen is just a few clicks away.
 
 ## Home Screen 
