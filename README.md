@@ -71,18 +71,3 @@ Light Mode             |  Dark Mode
 Light Mode             |  Dark Mode
 :-------------------------:|:-------------------------:
 ![image](https://user-images.githubusercontent.com/91654653/215494753-f86cdc7b-1595-4b9f-b9ce-43b175242c91.png) |  ![image](https://user-images.githubusercontent.com/91654653/215494799-c78fa0e0-e69e-49a4-8ac5-0a8e708c0fbb.png)
-
-
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
